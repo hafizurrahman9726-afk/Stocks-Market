@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PROMPTSYRA_VERSION', '2.4.1' );
+define( 'PROMPTSYRA_VERSION', '2.5.0' );
 define( 'PROMPTSYRA_DIR', get_stylesheet_directory() );
 define( 'PROMPTSYRA_URI', get_stylesheet_directory_uri() );
 
@@ -212,6 +212,127 @@ function promptsyra_enqueue_assets() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'promptsyra_enqueue_assets', 30 );
+
+/**
+ * Resource Hints & LCP Preload for Core Web Vitals optimization.
+ * Preconnects Google Fonts and preloads high-priority LCP visual assets.
+ */
+function promptsyra_resource_hints() {
+	echo '<link rel="preconnect" href="https://fonts.googleapis.com" />' . "\n";
+	echo '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />' . "\n";
+
+	if ( is_front_page() ) {
+		$hero_img = 'https://promptsyra.com/wp-content/uploads/2026/10/promptsyra-hero-portrait.webp';
+		echo '<link rel="preload" as="image" href="' . esc_url( $hero_img ) . '" type="image/webp" fetchpriority="high" />' . "\n";
+	}
+}
+add_action( 'wp_head', 'promptsyra_resource_hints', 1 );
+
+/**
+ * Defer non-critical scripts to eliminate render-blocking execution and improve TBT / INP.
+ *
+ * @param string $tag Script HTML markup.
+ * @param string $handle Registered script handle.
+ * @return string
+ */
+function promptsyra_defer_scripts( $tag, $handle ) {
+	$deferred_handles = array( 'promptsyra-scoped-ui', 'promptsyra-single-post', 'comment-reply' );
+	if ( in_array( $handle, $deferred_handles, true ) ) {
+		if ( false === strpos( $tag, ' defer' ) && false === strpos( $tag, ' async' ) ) {
+			return str_replace( ' src', ' defer src', $tag );
+		}
+	}
+	return $tag;
+}
+add_filter( 'script_loader_tag', 'promptsyra_defer_scripts', 10, 2 );
+
+/**
+ * Clean up WordPress core bloat: disable classic emoji scripts and unused generator headers.
+ */
+function promptsyra_cleanup_core_bloat() {
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' );
+	remove_action( 'wp_head', 'wp_generator' );
+	remove_action( 'wp_head', 'wlwmanifest_link' );
+	remove_action( 'wp_head', 'rsd_link' );
+	remove_action( 'wp_head', 'wp_shortlink_wp_head' );
+}
+add_action( 'init', 'promptsyra_cleanup_core_bloat' );
+
+/**
+ * Technical SEO: Ensure XML sitemap endpoint resolves cleanly.
+ * Intercepts /sitemap_index.xml on template_redirect and renders native XML index with HTTP 200.
+ */
+function promptsyra_register_sitemap_rewrites() {
+	add_rewrite_rule( '^sitemap_index\.xml$', 'index.php?sitemap=1', 'top' );
+	add_rewrite_rule( '^([^/]+)?-sitemap([0-9]+)?\.xml$', 'index.php?sitemap=$matches[1]&sitemap_n=$matches[2]', 'top' );
+}
+add_action( 'init', 'promptsyra_register_sitemap_rewrites' );
+
+function promptsyra_handle_sitemap_index() {
+	$uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+	$path = wp_parse_url( $uri, PHP_URL_PATH );
+	if ( '/sitemap_index.xml' === $path ) {
+		if ( function_exists( 'wp_sitemaps_get_server' ) ) {
+			$server = wp_sitemaps_get_server();
+			if ( is_object( $server ) && method_exists( $server, 'render_index' ) ) {
+				$server->render_index();
+				exit;
+			}
+		}
+		wp_safe_redirect( home_url( '/?sitemap=1' ), 301 );
+		exit;
+	}
+}
+add_action( 'template_redirect', 'promptsyra_handle_sitemap_index', 1 );
+
+/**
+ * Technical SEO: Output SiteNavigationElement JSON-LD schema for search sitelinks.
+ */
+function promptsyra_output_navigation_schema() {
+	if ( ! is_front_page() ) {
+		return;
+	}
+	$nav_items = array(
+		array(
+			'@type' => 'SiteNavigationElement',
+			'name'  => 'Home',
+			'url'   => home_url( '/' ),
+		),
+		array(
+			'@type' => 'SiteNavigationElement',
+			'name'  => 'AI Photo Prompts',
+			'url'   => home_url( '/category/ai-photo-prompts/' ),
+		),
+		array(
+			'@type' => 'SiteNavigationElement',
+			'name'  => 'Trending Prompts',
+			'url'   => home_url( '/category/trending-prompts/' ),
+		),
+		array(
+			'@type' => 'SiteNavigationElement',
+			'name'  => 'Social Media Prompts',
+			'url'   => home_url( '/category/ai-social-media-prompts/' ),
+		),
+		array(
+			'@type' => 'SiteNavigationElement',
+			'name'  => 'About Us',
+			'url'   => home_url( '/about-us/' ),
+		),
+		array(
+			'@type' => 'SiteNavigationElement',
+			'name'  => 'Contact Us',
+			'url'   => home_url( '/contact-us/' ),
+		),
+	);
+	echo '<script type="application/ld+json">' . wp_json_encode( array(
+		'@context' => 'https://schema.org',
+		'@graph'   => $nav_items,
+	) ) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'promptsyra_output_navigation_schema', 20 );
 
 /**
  * Resolve an approved category object safely without creating broken links.

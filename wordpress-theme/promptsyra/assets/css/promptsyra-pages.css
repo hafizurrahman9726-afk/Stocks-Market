@@ -693,6 +693,17 @@
 		padding: 2.25rem 0 1.75rem;
 	}
 
+	.ps-essential-hero-inner,
+	.ps-essential-container {
+		padding: 0 1rem;
+	}
+
+	.ps-essential-title {
+		font-size: clamp(1.65rem, 5vw, 2.25rem);
+		overflow-wrap: break-word;
+		word-break: break-word;
+	}
+
 	.ps-essential-body-section {
 		padding: 2rem 0 3.25rem;
 	}
@@ -712,17 +723,30 @@
 	}
 
 	.ps-contact-form-card {
-		padding: 1.375rem;
+		padding: 1.25rem;
 	}
 
 	.ps-contact-submit-btn {
 		width: 100%;
+		min-height: 2.75rem;
 	}
 
 	.ps-author-archive-card {
 		flex-direction: column;
 		align-items: flex-start;
-		padding: 1.375rem;
+		padding: 1.25rem;
+	}
+}
+
+@media (max-width: 360px) {
+	.ps-essential-hero-inner,
+	.ps-essential-container {
+		padding: 0 0.75rem;
+	}
+
+	.ps-contact-form-card,
+	.ps-author-archive-card {
+		padding: 1rem 0.75rem;
 	}
 }
 

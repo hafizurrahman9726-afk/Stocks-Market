@@ -128,8 +128,17 @@ const DEFAULT_FAQS = [
   },
 ];
 
+export type ViewportSize =
+  | 'desktop'
+  | 'laptop'
+  | 'tablet-lg'
+  | 'tablet'
+  | 'mobile-lg'
+  | 'mobile'
+  | 'mobile-sm';
+
 export const StagingHomepagePreview: React.FC = () => {
-  const [viewport, setViewport] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
+  const [viewport, setViewport] = useState<ViewportSize>('desktop');
   const [openDropdown, setOpenDropdown] = useState<'important-pages' | null>(null);
   const [headerSearchOpen, setHeaderSearchOpen] = useState(false);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
@@ -185,12 +194,15 @@ export const StagingHomepagePreview: React.FC = () => {
     );
   };
 
-  const containerWidthClass =
-    viewport === 'mobile'
-      ? 'max-w-[390px]'
-      : viewport === 'tablet'
-        ? 'max-w-[820px]'
-        : 'max-w-full';
+  const containerWidthClass = {
+    'desktop': 'max-w-full',
+    'laptop': 'max-w-[1280px]',
+    'tablet-lg': 'max-w-[1024px]',
+    'tablet': 'max-w-[768px]',
+    'mobile-lg': 'max-w-[430px]',
+    'mobile': 'max-w-[375px]',
+    'mobile-sm': 'max-w-[320px]',
+  }[viewport];
 
   return (
     <div className="space-y-4">
@@ -233,26 +245,59 @@ export const StagingHomepagePreview: React.FC = () => {
           </label>
         </div>
 
-        <div className="flex items-center gap-1 p-1 bg-slate-100 rounded-lg">
+        {/* Multi-Device Responsive Viewport Switcher */}
+        <div className="flex flex-wrap items-center gap-1 p-1 bg-slate-100 rounded-lg">
           <button
             type="button"
             onClick={() => setViewport('desktop')}
             className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
               viewport === 'desktop' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
+            title="Desktop 1440px+"
           >
             <Monitor className="w-3.5 h-3.5" />
-            <span>Desktop</span>
+            <span>1440px</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewport('laptop')}
+            className={`inline-flex items-center gap-1 px-2 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+              viewport === 'laptop' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+            }`}
+            title="Laptop 1280px"
+          >
+            <span>1280px</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewport('tablet-lg')}
+            className={`inline-flex items-center gap-1.5 px-2 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+              viewport === 'tablet-lg' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+            }`}
+            title="iPad Pro / Tablet 1024px"
+          >
+            <Tablet className="w-3.5 h-3.5" />
+            <span>1024px</span>
           </button>
           <button
             type="button"
             onClick={() => setViewport('tablet')}
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+            className={`inline-flex items-center gap-1 px-2 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
               viewport === 'tablet' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
+            title="iPad / Tablet Portrait 768px"
           >
-            <Tablet className="w-3.5 h-3.5" />
-            <span>Tablet</span>
+            <span>768px</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewport('mobile-lg')}
+            className={`inline-flex items-center gap-1 px-2 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+              viewport === 'mobile-lg' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+            }`}
+            title="Large Phone 430px"
+          >
+            <span>430px</span>
           </button>
           <button
             type="button"
@@ -260,9 +305,20 @@ export const StagingHomepagePreview: React.FC = () => {
             className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
               viewport === 'mobile' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
             }`}
+            title="Standard Phone 375px"
           >
             <Smartphone className="w-3.5 h-3.5" />
-            <span>Mobile</span>
+            <span>375px</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => setViewport('mobile-sm')}
+            className={`inline-flex items-center gap-1 px-2 py-1.5 text-xs font-medium rounded-md transition-colors whitespace-nowrap shrink-0 ${
+              viewport === 'mobile-sm' ? 'bg-white text-slate-900 shadow-xs' : 'text-slate-600 hover:text-slate-900'
+            }`}
+            title="Small Phone 320px"
+          >
+            <span>320px</span>
           </button>
         </div>
       </div>

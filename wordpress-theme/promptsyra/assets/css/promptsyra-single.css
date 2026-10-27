@@ -29,6 +29,8 @@ body.ps-single-body .ps-single-main > .yoast-breadcrumbs {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 36px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
 @media (min-width: 1024px) {
@@ -36,6 +38,20 @@ body.ps-single-body .ps-single-main > .yoast-breadcrumbs {
 		grid-template-columns: minmax(0, 1fr) 340px;
 		align-items: start;
 		gap: 40px;
+	}
+}
+
+@media (max-width: 640px) {
+	.ps-single-layout {
+		padding: 20px 14px 44px;
+		gap: 24px;
+	}
+}
+
+@media (max-width: 360px) {
+	.ps-single-layout {
+		padding: 16px 10px 36px;
+		gap: 20px;
 	}
 }
 

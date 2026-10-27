@@ -3,8 +3,8 @@ import path from 'path';
 
 async function deployHeroImages() {
   const loginUrl = 'https://promptsyra.com/wp-login.php';
-  const user = 'promptsyra';
-  const pass = 'Siyra4%4rahman';
+  const user = process.env.WP_USER || 'promptsyra';
+  const pass = process.env.WP_PASSWORD || '';
 
   console.log('1. Authenticating with WordPress admin at promptsyra.com...');
   const res1 = await fetch(loginUrl);

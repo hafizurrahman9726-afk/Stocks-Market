@@ -32,7 +32,7 @@ async function run() {
   
   const postParams = new URLSearchParams({
     log: 'promptsyra',
-    pwd: 'Siyra4%4rahman',
+    pwd: process.env.WP_PASSWORD || '',
     'wp-submit': 'Log In',
     redirect_to: 'https://promptsyra.com/wp-admin/',
     testcookie: '1'

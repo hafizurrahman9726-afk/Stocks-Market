@@ -30,7 +30,7 @@ export default function App() {
     setIsDownloading(true);
     try {
       const blob = await buildStandaloneThemeZipBlob();
-      triggerBlobDownload(blob, 'promptsyra-v2.4.1.zip');
+      triggerBlobDownload(blob, 'promptsyra-v2.5.0.zip');
     } finally {
       setIsDownloading(false);
     }
@@ -80,7 +80,7 @@ export default function App() {
               className="inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-violet-600 hover:bg-violet-700 rounded-lg transition-colors whitespace-nowrap shrink-0"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Download Theme v2.4.1 ZIP</span>
+              <span>Download Theme v2.5.0 ZIP</span>
             </button>
           </div>
         </div>
@@ -121,7 +121,7 @@ export default function App() {
       <footer className="border-t border-slate-200 bg-white py-4 px-6">
         <div className="max-w-[1360px] mx-auto flex flex-wrap items-center justify-between gap-3 text-xs text-slate-500">
           <span>
-            PromptSyra.com WordPress Theme Package · Version 2.4.1 (Header Navigation Upgrade + Important Pages Dropdown)
+            PromptSyra.com WordPress Theme Package · Version 2.5.0 (Complete Responsive Design Upgrade · All Viewports Tested)
           </span>
           <span>Official Contact: contact@promptsyra.com · Zero Credentials Stored</span>
         </div>
