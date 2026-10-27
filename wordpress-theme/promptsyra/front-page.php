@@ -36,10 +36,14 @@ $ps_point_1      = get_theme_mod( 'promptsyra_utility_point_1', __( 'Structured,
 $ps_point_2      = get_theme_mod( 'promptsyra_utility_point_2', __( 'Portrait, Creative & Social Styles', 'promptsyra' ) );
 $ps_point_3      = get_theme_mod( 'promptsyra_utility_point_3', __( 'Practical Customization Notes', 'promptsyra' ) );
 
-// Optional hero showcase images from Media Library.
-$ps_hero_img_1 = wp_get_attachment_image_url( absint( get_theme_mod( 'promptsyra_hero_card_image_1', 0 ) ), 'medium_large' );
-$ps_hero_img_2 = wp_get_attachment_image_url( absint( get_theme_mod( 'promptsyra_hero_card_image_2', 0 ) ), 'medium_large' );
-$ps_hero_img_3 = wp_get_attachment_image_url( absint( get_theme_mod( 'promptsyra_hero_card_image_3', 0 ) ), 'medium_large' );
+// Hero showcase visual composition images (supplied official photography assets).
+$ps_hero_img_1_override = wp_get_attachment_image_url( absint( get_theme_mod( 'promptsyra_hero_card_image_1', 0 ) ), 'medium_large' );
+$ps_hero_img_2_override = wp_get_attachment_image_url( absint( get_theme_mod( 'promptsyra_hero_card_image_2', 0 ) ), 'medium_large' );
+$ps_hero_img_3_override = wp_get_attachment_image_url( absint( get_theme_mod( 'promptsyra_hero_card_image_3', 0 ) ), 'medium_large' );
+
+$ps_hero_img_1 = ! empty( $ps_hero_img_1_override ) ? $ps_hero_img_1_override : 'https://promptsyra.com/wp-content/uploads/2026/10/promptsyra-hero-portrait.webp';
+$ps_hero_img_2 = ! empty( $ps_hero_img_2_override ) ? $ps_hero_img_2_override : 'https://promptsyra.com/wp-content/uploads/2026/10/promptsyra-creative-studio.webp';
+$ps_hero_img_3 = ! empty( $ps_hero_img_3_override ) ? $ps_hero_img_3_override : 'https://promptsyra.com/wp-content/uploads/2026/10/promptsyra-social-visuals.webp';
 
 // Visibility flags.
 $ps_show_categories = (bool) get_theme_mod( 'promptsyra_show_categories', true );
@@ -212,45 +216,58 @@ $ps_all_authors  = array( $ps_author_syra, $ps_author_arjun, $ps_author_neha );
 					</div>
 				</div>
 
-				<!-- Custom AI-Inspired Photography Visual Composition -->
-				<div class="ps-hero-showcase" aria-hidden="true">
+				<!-- Photography Visual Composition -->
+				<div class="ps-hero-showcase">
 					<div class="ps-photo-collage">
 						<article class="ps-showcase-card ps-card-main">
-							<?php if ( ! empty( $ps_hero_img_1 ) ) : ?>
-								<img src="<?php echo esc_url( $ps_hero_img_1 ); ?>" alt="" class="ps-showcase-img" loading="eager" />
-							<?php else : ?>
-								<div class="ps-showcase-art ps-art-portrait">
-									<svg viewBox="0 0 120 120" class="ps-art-svg" fill="none"><circle cx="60" cy="46" r="22" stroke="currentColor" stroke-width="2.5"/><path d="M24 104c6-20 20-30 36-30s30 10 36 30" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
-								</div>
-							<?php endif; ?>
+							<div class="ps-showcase-media">
+								<img
+									src="<?php echo esc_url( $ps_hero_img_1 ); ?>"
+									alt="<?php esc_attr_e( 'Portrait Study · 85mm Soft Rim Light AI Photography Prompt Example', 'promptsyra' ); ?>"
+									class="ps-showcase-img ps-showcase-img--portrait"
+									width="944"
+									height="1024"
+									loading="eager"
+									fetchpriority="high"
+									decoding="async"
+								/>
+							</div>
 							<div class="ps-showcase-caption">
 								<span class="ps-showcase-kicker"><?php esc_html_e( 'Portrait Study · 85mm Soft Rim Light', 'promptsyra' ); ?></span>
-								<p class="ps-showcase-snippet">"Natural window key light, shallow depth of field, warm editorial skin tones, 85mm f/1.8..."</p>
+								<p class="ps-showcase-snippet"><?php esc_html_e( '"Natural window key light, shallow depth of field, warm editorial skin tones, 85mm f/1.8..."', 'promptsyra' ); ?></p>
 							</div>
 						</article>
 
 						<div class="ps-showcase-side">
 							<article class="ps-showcase-card ps-card-sub">
-								<?php if ( ! empty( $ps_hero_img_2 ) ) : ?>
-									<img src="<?php echo esc_url( $ps_hero_img_2 ); ?>" alt="" class="ps-showcase-img" loading="lazy" />
-								<?php else : ?>
-									<div class="ps-showcase-art ps-art-creative">
-										<svg viewBox="0 0 80 80" class="ps-art-svg" fill="none"><rect x="14" y="18" width="52" height="44" rx="8" stroke="currentColor" stroke-width="2.2"/><circle cx="40" cy="40" r="11" stroke="currentColor" stroke-width="2.2"/></svg>
-									</div>
-								<?php endif; ?>
+								<div class="ps-showcase-media">
+									<img
+										src="<?php echo esc_url( $ps_hero_img_2 ); ?>"
+										alt="<?php esc_attr_e( 'Creative Studio Setup AI Photography Prompt Example', 'promptsyra' ); ?>"
+										class="ps-showcase-img ps-showcase-img--sub"
+										width="581"
+										height="504"
+										loading="eager"
+										decoding="async"
+									/>
+								</div>
 								<div class="ps-showcase-caption">
 									<span class="ps-showcase-kicker"><?php esc_html_e( 'Creative Studio Setup', 'promptsyra' ); ?></span>
 								</div>
 							</article>
 
 							<article class="ps-showcase-card ps-card-sub">
-								<?php if ( ! empty( $ps_hero_img_3 ) ) : ?>
-									<img src="<?php echo esc_url( $ps_hero_img_3 ); ?>" alt="" class="ps-showcase-img" loading="lazy" />
-								<?php else : ?>
-									<div class="ps-showcase-art ps-art-social">
-										<svg viewBox="0 0 80 80" class="ps-art-svg" fill="none"><rect x="22" y="10" width="36" height="60" rx="7" stroke="currentColor" stroke-width="2.2"/><path d="M35 58h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
-									</div>
-								<?php endif; ?>
+								<div class="ps-showcase-media">
+									<img
+										src="<?php echo esc_url( $ps_hero_img_3 ); ?>"
+										alt="<?php esc_attr_e( '9:16 Social Visuals AI Photography Prompt Example', 'promptsyra' ); ?>"
+										class="ps-showcase-img ps-showcase-img--sub"
+										width="581"
+										height="507"
+										loading="lazy"
+										decoding="async"
+									/>
+								</div>
 								<div class="ps-showcase-caption">
 									<span class="ps-showcase-kicker"><?php esc_html_e( '9:16 Social Visuals', 'promptsyra' ); ?></span>
 								</div>
@@ -732,33 +749,101 @@ $ps_all_authors  = array( $ps_author_syra, $ps_author_arjun, $ps_author_neha );
 			</section>
 		<?php endif; ?>
 
-		<!-- G. Community and Social Links (Rendered ONLY When Genuine URLs Exist) -->
-		<?php if ( $ps_show_community && ! empty( $ps_community_channels ) ) : ?>
-			<section class="ps-community-section" aria-labelledby="ps-community-heading">
-				<div class="ps-container">
-					<div class="ps-editorial-head">
-						<p class="ps-section-kicker"><?php esc_html_e( 'PromptSyra.com Channels', 'promptsyra' ); ?></p>
-						<h2 id="ps-community-heading" class="ps-section-title"><?php esc_html_e( 'Connect With PromptSyra', 'promptsyra' ); ?></h2>
-						<p class="ps-editorial-lead">
-							<?php esc_html_e( 'Follow our official channels for newly published AI photo prompt collections and photography notes.', 'promptsyra' ); ?>
-						</p>
-					</div>
-
-					<div class="ps-community-grid">
-						<?php foreach ( $ps_community_channels as $ch_item ) : ?>
-							<article class="ps-community-card">
-								<h3 class="ps-community-title"><?php echo esc_html( $ch_item['title'] ); ?></h3>
-								<p class="ps-community-desc"><?php echo esc_html( $ch_item['desc'] ); ?></p>
-								<a href="<?php echo esc_url( $ch_item['url'] ); ?>" class="ps-post-read-link" target="_blank" rel="noopener noreferrer">
-									<span><?php echo esc_html( $ch_item['cta'] ); ?></span>
-									<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-								</a>
-							</article>
-						<?php endforeach; ?>
-					</div>
+		<!-- G. Join Our Community (Instagram, Facebook, WhatsApp Channel) -->
+		<section class="ps-community-section" aria-labelledby="ps-community-heading">
+			<div class="ps-container">
+				<div class="ps-community-header">
+					<p class="ps-section-kicker"><?php esc_html_e( 'Connect & Follow', 'promptsyra' ); ?></p>
+					<h2 id="ps-community-heading" class="ps-community-section-title"><?php esc_html_e( 'Join Our Community', 'promptsyra' ); ?></h2>
+					<p class="ps-community-lead">
+						<?php esc_html_e( 'Stay connected with PromptSyra across your favorite platforms for copy-ready AI photo prompts, lighting inspiration, and prompt engineering tips.', 'promptsyra' ); ?>
+					</p>
 				</div>
-			</section>
-		<?php endif; ?>
+
+				<div class="ps-community-grid">
+					<!-- Instagram Visual Gallery Card -->
+					<article class="ps-community-card ps-community-card--instagram">
+						<div class="ps-community-card-top">
+							<div class="ps-community-icon ps-community-icon--instagram" aria-hidden="true">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+									<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+									<line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+								</svg>
+							</div>
+							<span class="ps-community-badge ps-badge-instagram"><?php esc_html_e( 'Visual Gallery', 'promptsyra' ); ?></span>
+						</div>
+						<h3 class="ps-community-title"><?php esc_html_e( 'Instagram Visual Gallery', 'promptsyra' ); ?></h3>
+						<p class="ps-community-handle">@promptsyra</p>
+						<p class="ps-community-desc">
+							<?php esc_html_e( 'Explore curated portrait prompts, rim lighting setups, cinematic camera angles, and visual styling ideas for Midjourney, FLUX, and modern image models.', 'promptsyra' ); ?>
+						</p>
+						<div class="ps-community-actions">
+							<a href="https://www.instagram.com/promptsyra" target="_blank" rel="noopener noreferrer" class="ps-btn ps-btn-instagram ps-community-btn">
+								<span><?php esc_html_e( 'Follow on Instagram', 'promptsyra' ); ?></span>
+								<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+							</a>
+							<a href="<?php echo esc_url( home_url( '/instagram/' ) ); ?>" class="ps-community-sublink">
+								<span><?php esc_html_e( 'Explore Instagram Page →', 'promptsyra' ); ?></span>
+							</a>
+						</div>
+					</article>
+
+					<!-- Facebook Community Updates Card -->
+					<article class="ps-community-card ps-community-card--facebook">
+						<div class="ps-community-card-top">
+							<div class="ps-community-icon ps-community-icon--facebook" aria-hidden="true">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+								</svg>
+							</div>
+							<span class="ps-community-badge ps-badge-facebook"><?php esc_html_e( 'Community Updates', 'promptsyra' ); ?></span>
+						</div>
+						<h3 class="ps-community-title"><?php esc_html_e( 'Facebook Community Updates', 'promptsyra' ); ?></h3>
+						<p class="ps-community-handle">PromptSyra</p>
+						<p class="ps-community-desc">
+							<?php esc_html_e( 'Join creator discussions, discover newly published prompt tutorials, get category highlights, and connect with other AI photography enthusiasts.', 'promptsyra' ); ?>
+						</p>
+						<div class="ps-community-actions">
+							<a href="https://www.facebook.com/people/PromptSyra/61595584906422/" target="_blank" rel="noopener noreferrer" class="ps-btn ps-btn-facebook ps-community-btn">
+								<span><?php esc_html_e( 'Follow on Facebook', 'promptsyra' ); ?></span>
+								<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+							</a>
+							<a href="<?php echo esc_url( home_url( '/facebook/' ) ); ?>" class="ps-community-sublink">
+								<span><?php esc_html_e( 'Explore Facebook Page →', 'promptsyra' ); ?></span>
+							</a>
+						</div>
+					</article>
+
+					<!-- WhatsApp Official Channel Card -->
+					<article class="ps-community-card ps-community-card--whatsapp">
+						<div class="ps-community-card-top">
+							<div class="ps-community-icon ps-community-icon--whatsapp" aria-hidden="true">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"/>
+									<path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"/>
+								</svg>
+							</div>
+							<span class="ps-community-badge ps-badge-whatsapp"><?php esc_html_e( 'Official Channel', 'promptsyra' ); ?></span>
+						</div>
+						<h3 class="ps-community-title"><?php esc_html_e( 'WhatsApp Official Channel', 'promptsyra' ); ?></h3>
+						<p class="ps-community-handle">PromptSyra Broadcast</p>
+						<p class="ps-community-desc">
+							<?php esc_html_e( 'Get instant mobile notifications whenever trending prompts and camera setups drop. 100% private one-way channel directly on WhatsApp.', 'promptsyra' ); ?>
+						</p>
+						<div class="ps-community-actions">
+							<a href="https://whatsapp.com/channel/0029VbDkVtP7T8bZzLpWMq2d" target="_blank" rel="noopener noreferrer" class="ps-btn ps-btn-whatsapp ps-community-btn">
+								<span><?php esc_html_e( 'Join WhatsApp Channel', 'promptsyra' ); ?></span>
+								<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+							</a>
+							<a href="<?php echo esc_url( home_url( '/whatsapp-channel/' ) ); ?>" class="ps-community-sublink">
+								<span><?php esc_html_e( 'Channel Details & FAQs →', 'promptsyra' ); ?></span>
+							</a>
+						</div>
+					</article>
+				</div>
+			</div>
+		</section>
 
 		<!-- H. Frequently Asked Questions + I. Author & Editorial Feature -->
 		<?php if ( $ps_show_faq || $ps_show_author ) : ?>

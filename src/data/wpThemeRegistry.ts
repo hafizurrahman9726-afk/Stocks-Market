@@ -29,6 +29,7 @@ import singleJsRaw from '../../wordpress-theme/promptsyra/assets/js/promptsyra-s
 import pagesCssRaw from '../../wordpress-theme/promptsyra/assets/css/promptsyra-pages.css?raw';
 import readmeMdRaw from '../../wordpress-theme/promptsyra/README-DEPLOY.md?raw';
 import pluginBootstrapRaw from '../../wordpress-theme/promptsyra-plugin/promptsyra-rebrand.php?raw';
+import screenshotPngUrl from '../../wordpress-theme/promptsyra/screenshot.png';
 
 export interface ThemeSourceFile {
   relativePath: string;
@@ -83,7 +84,7 @@ export const PROMPTSYRA_THEME_FILES: ThemeSourceFile[] = [
     relativePath: 'style.css',
     language: 'css',
     purpose:
-      'Defines PromptSyra v2.4.0 standalone WordPress theme metadata (no fragile parent Template dependency).',
+      'Defines PromptSyra v2.4.1 standalone WordPress theme metadata with the streamlined 5-destination header navigation and Important Pages dropdown.',
     singlePostImpact: 'Zero global CSS selectors.',
     content: styleCssRaw,
   },
@@ -100,7 +101,7 @@ export const PROMPTSYRA_THEME_FILES: ThemeSourceFile[] = [
     relativePath: 'front-page.php',
     language: 'php',
     purpose:
-      'Upgraded v2.4.0 PromptSyra.com homepage: Hero + integrated Feature Benefits Bar, 3 tailored Category Discovery Cards, WP_Query Featured Prompts, Connected 3-Step Workflow + Cross-Tool Note, Asymmetric Why Choose PromptSyra? Specimen (with working Copy Sample Prompt) & Customization Ledger, conditional Socials, FAQ + JSON-LD, and Syra Ansari + 3 Authors.',
+      'PromptSyra.com homepage (v2.4.1): Hero visual composition with 3 real photography showcase images (Portrait Study, Creative Studio Setup, and 9:16 Social Visuals), integrated Feature Benefits Bar, 3 tailored Category Discovery Cards, WP_Query Featured Prompts, Connected 3-Step Workflow, Why Choose PromptSyra? Specimen, and 3 Authors.',
     singlePostImpact: 'Zero impact — WordPress loads front-page.php strictly on the site front page.',
     content: frontPagePhpRaw,
   },
@@ -155,8 +156,8 @@ export const PROMPTSYRA_THEME_FILES: ThemeSourceFile[] = [
     relativePath: 'template-parts/header-promptsyra.php',
     language: 'php',
     purpose:
-      'Accessible PromptSyra.com header with Home, AI Prompts & Categories dropdowns (3 approved slugs), conditional Tools menu, verified page links, Search drawer, and Explore Prompts CTA.',
-    singlePostImpact: 'Zero impact on single.php unless explicitly included.',
+      'Accessible PromptSyra.com shared header (v2.4.1) featuring Home, AI Photo Prompts, Trending Prompts, Social Media Prompts, and Important Pages dropdown (About Us, Contact Us, Privacy Policy, Disclaimer, Terms & Conditions), Search drawer, and mobile drawer.',
+    singlePostImpact: 'Shared across all public pages (front-page.php, single.php, page.php, author.php, category.php, 404.php).',
     content: headerPhpRaw,
   },
   {
@@ -413,6 +414,16 @@ export async function buildChildThemeZipBlob(parentFolderSlug: string): Promise<
     root.file(file.relativePath, content);
   }
 
+  try {
+    const res = await fetch(screenshotPngUrl);
+    if (res.ok) {
+      const screenshotBlob = await res.blob();
+      root.file('screenshot.png', screenshotBlob);
+    }
+  } catch (err) {
+    console.warn('Could not load screenshot.png for child theme zip', err);
+  }
+
   return zip.generateAsync({ type: 'blob' });
 }
 
@@ -439,6 +450,16 @@ export async function buildStandaloneThemeZipBlob(): Promise<Blob> {
 
   root.file('404.php', notFoundPhpRaw);
   root.file('single.php', singleStandalonePhpRaw);
+
+  try {
+    const res = await fetch(screenshotPngUrl);
+    if (res.ok) {
+      const screenshotBlob = await res.blob();
+      root.file('screenshot.png', screenshotBlob);
+    }
+  } catch (err) {
+    console.warn('Could not load screenshot.png for theme zip', err);
+  }
 
   return zip.generateAsync({ type: 'blob' });
 }

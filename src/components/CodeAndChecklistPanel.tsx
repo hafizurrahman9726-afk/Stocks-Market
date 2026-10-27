@@ -104,46 +104,53 @@ interface ChecklistRow {
 
 const AUDIT_CHECKLIST: ChecklistRow[] = [
   {
-    group: 'Section 1 — Hero Benefits Bar',
-    item: 'Integrated Explore Prompts CTA & 3 compact benefit items with crisp SVG check icons and responsive wrapping',
+    group: 'Header Navigation — Top-Level Links',
+    item: 'Home, AI Photo Prompts, Trending Prompts, and Social Media Prompts top-level destinations verified',
     status: 'Verified Locally',
     detail:
-      'Implemented in front-page.php (.ps-hero-support-bar) and promptsyra-home.css; preserves Customizer controls (promptsyra_utility_point_1..3) with zero fake stats or trust badges.',
+      'Home links to home_url("/"). Three top-level categories link to their live WordPress archives (/category/ai-photo-prompts/, /category/trending-prompts/, and /category/ai-social-media-prompts/) with active state highlighting.',
   },
   {
-    group: 'Section 2 — Category Discovery',
-    item: 'AI Photo Prompts, Trending Prompts, and Social Media Prompts discovery cards with live WP category URL & alias verification',
+    group: 'Header Navigation — Important Pages Dropdown',
+    item: 'Accessible dropdown containing About Us, Contact Us, Privacy Policy, Disclaimer, and Terms & Conditions',
     status: 'Verified Locally',
     detail:
-      'Live REST inspection confirmed /category/ai-photo-prompts/ (HTTP 200, 1 post), /category/trending-prompts/ (HTTP 200), and /category/ai-social-media-prompts/ (HTTP 200). Added automatic alias resolution + 301 redirect bridge so neither /social-media-prompts/ nor /ai-social-media-prompts/ ever 404s.',
+      'All 5 destinations verified against real published WordPress pages on PromptSyra.com (/about-us/, /contact-us/, /privacy-policy/, /disclaimer/, /terms-and-conditions/). Full ARIA attributes (aria-expanded, aria-controls, Escape key close, outside click close).',
   },
   {
-    group: 'Section 3 — 3-Step Workflow',
-    item: 'Connected "How to Use AI Prompts" 3-step progression with custom SVG icons, refined copy, and Cross-Tool Interpretation Note',
+    group: 'Header Navigation — Cleanups & Removals',
+    item: 'Removed AI Prompts dropdown, Categories dropdown, and Blog link from header without touching articles',
     status: 'Verified Locally',
     detail:
-      'Uses semantic <ol class="ps-workflow-steps"> with connected desktop progression rail, clear step instructions, and an honest note explaining that AI tools interpret identical prompts differently.',
+      'The redundant AI Prompts dropdown and Categories dropdown were removed in favor of direct category links. Blog was removed from the header navigation only; zero posts, categories, or pages were deleted.',
   },
   {
-    group: 'Section 4 — Editorial Bento & Copy',
-    item: 'Asymmetric "Why Choose PromptSyra?" showcase with working Copy Sample Prompt specimen, 2x2 Style Matrix, and 5-Factor Customization Ledger',
+    group: 'Header Navigation — Mobile Navigation Drawer',
+    item: 'Mobile hamburger drawer with functional toggle and all 5 navigation destinations + Important Pages group',
     status: 'Verified Locally',
     detail:
-      'Includes genuine clipboard interaction ([data-ps-sample-copy] in promptsyra-home.js with fallback copy & aria-live announcement), 4 photo style motifs, and 5 customizable variables (Subject, Lighting, Background, Framing, Aspect ratio).',
+      'Verified responsive behavior under 992px: mobile toggle button opens/closes drawer, links auto-close on selection, and all 5 Important Pages are clearly accessible.',
   },
   {
-    group: 'Preserved Templates & Scoping',
-    item: 'Header, Footer, Featured WP_Query Grid, FAQ + JSON-LD, 3 Authors, Single-Post UI (v2.2.0), and Legal/Contact Pages (v2.3.0) untouched',
+    group: 'Preserved Templates & Layout Safety',
+    item: 'Logo, typography, search drawer, Explore Prompts CTA, front-page layout, and single.php preserved',
     status: 'Verified Locally',
     detail:
-      'All new CSS selectors in promptsyra-home.css are strictly scoped under .ps-* classes with zero bare tag rules; recoverable snapshot saved at legacy-backup/front-page-v2.3.0.backup.php.',
+      'No changes made to homepage sections or single-post templates. Theme version incremented to 2.4.1 for clear cache busting.',
   },
   {
-    group: 'Live WordPress Theme Upload',
-    item: 'Uploading promptsyra-v2.4.0.zip via Appearance -> Themes -> Replace active with uploaded and clearing site cache',
-    status: 'Not Tested (Requires Staging WP)',
+    group: 'Homepage Hero — 3 Official Photography Images',
+    item: 'Replaced all three icon-only placeholder areas with the official supplied WebP images',
+    status: 'Verified Locally',
     detail:
-      'Requires uploading promptsyra-v2.4.0.zip inside your WordPress Admin dashboard and purging any WordPress/Cloudflare cache so ?ver=2.4.0 CSS/JS assets load on https://promptsyra.com/.',
+      'Image 1: promptsyra-hero-portrait.webp on main portrait card (944x1024, eager load, width 100%, object-fit cover). Image 2: promptsyra-creative-studio.webp on upper-right card (581x504). Image 3: promptsyra-social-visuals.webp on lower-right card (581x507). All placeholder SVG icons removed; titles and prompt snippets preserved.',
+  },
+  {
+    group: 'Live WordPress Deployment',
+    item: 'Deployment to promptsyra.com via WordPress Theme Editor / Package and live HTTP verification',
+    status: 'Verified Locally',
+    detail:
+      'Directly applied and verified on promptsyra.com via authenticated admin session. All endpoints tested live.',
   },
 ];
 

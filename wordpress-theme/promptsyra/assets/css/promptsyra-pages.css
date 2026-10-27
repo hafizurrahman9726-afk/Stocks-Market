@@ -725,3 +725,75 @@
 		padding: 1.375rem;
 	}
 }
+
+
+/* Social Pages Banner & Privacy Callout */
+.ps-social-cta-banner {
+	padding: 2.5rem;
+	border-radius: 1.25rem;
+	margin: 2rem 0 2.5rem;
+	box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+.ps-instagram-banner {
+	background: linear-gradient(135deg, #fdf2f8 0%, #fff1f2 50%, #fef3c7 100%);
+	border: 1px solid #fbcfe8;
+}
+.ps-facebook-banner {
+	background: linear-gradient(135deg, #eff6ff 0%, #f0f9ff 100%);
+	border: 1px solid #bfdbfe;
+}
+.ps-whatsapp-banner {
+	background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+	border: 1px solid #a7f3d0;
+}
+.ps-social-cta-actions {
+	display: flex;
+	align-items: center;
+	gap: 1.25rem;
+	margin-top: 1.5rem;
+	flex-wrap: wrap;
+}
+.ps-social-cta-note {
+	font-size: 0.875rem;
+	color: #64748b;
+}
+.ps-privacy-callout {
+	display: flex;
+	gap: 1.25rem;
+	padding: 1.75rem;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-left: 4px solid #10b981;
+	border-radius: 1rem;
+	margin: 2rem 0;
+}
+.ps-privacy-callout-icon {
+	color: #10b981;
+	flex-shrink: 0;
+	padding-top: 0.25rem;
+}
+.ps-privacy-callout-text h3 {
+	margin: 0 0 0.5rem;
+	font-size: 1.125rem;
+	font-weight: 700;
+	color: #0f172a;
+}
+.ps-privacy-callout-text p {
+	margin: 0;
+	font-size: 0.95rem;
+	line-height: 1.6;
+	color: #475569;
+}
+.ps-connect-footer-bar {
+	padding: 1.5rem;
+	background: #f8fafc;
+	border-radius: 0.875rem;
+	border: 1px solid #e2e8f0;
+	margin-top: 2.5rem;
+	text-align: center;
+}
+.ps-connect-footer-bar p {
+	margin: 0;
+	font-size: 0.95rem;
+	color: #475569;
+}

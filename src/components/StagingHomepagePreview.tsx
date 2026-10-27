@@ -130,7 +130,7 @@ const DEFAULT_FAQS = [
 
 export const StagingHomepagePreview: React.FC = () => {
   const [viewport, setViewport] = useState<'desktop' | 'tablet' | 'mobile'>('desktop');
-  const [openDropdown, setOpenDropdown] = useState<'prompts' | 'categories' | 'tools' | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<'important-pages' | null>(null);
   const [headerSearchOpen, setHeaderSearchOpen] = useState(false);
   const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -313,148 +313,117 @@ export const StagingHomepagePreview: React.FC = () => {
                   Home
                 </button>
 
-                {/* AI Prompts Dropdown */}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory('ai-photo-prompts');
+                    handleSimulatedNav('AI Photo Prompts', '/category/ai-photo-prompts/');
+                  }}
+                  className={`hover:text-[#5B3DF5] transition-colors whitespace-nowrap shrink-0 ${
+                    activeCategory === 'ai-photo-prompts' ? 'text-[#5B3DF5] font-semibold' : ''
+                  }`}
+                >
+                  AI Photo Prompts
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory('trending-prompts');
+                    handleSimulatedNav('Trending Prompts', '/category/trending-prompts/');
+                  }}
+                  className={`hover:text-[#5B3DF5] transition-colors whitespace-nowrap shrink-0 ${
+                    activeCategory === 'trending-prompts' ? 'text-[#5B3DF5] font-semibold' : ''
+                  }`}
+                >
+                  Trending Prompts
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory('social-media-prompts');
+                    handleSimulatedNav('Social Media Prompts', '/category/social-media-prompts/');
+                  }}
+                  className={`hover:text-[#5B3DF5] transition-colors whitespace-nowrap shrink-0 ${
+                    activeCategory === 'social-media-prompts' ? 'text-[#5B3DF5] font-semibold' : ''
+                  }`}
+                >
+                  Social Media Prompts
+                </button>
+
+                {/* Important Pages Dropdown */}
                 <div className="relative">
                   <button
                     type="button"
-                    aria-expanded={openDropdown === 'prompts'}
-                    onClick={() => setOpenDropdown(openDropdown === 'prompts' ? null : 'prompts')}
-                    className="inline-flex items-center gap-1 hover:text-[#0F172A] transition-colors whitespace-nowrap shrink-0"
+                    aria-expanded={openDropdown === 'important-pages'}
+                    onClick={() =>
+                      setOpenDropdown(openDropdown === 'important-pages' ? null : 'important-pages')
+                    }
+                    className="inline-flex items-center gap-1 hover:text-[#5B3DF5] transition-colors whitespace-nowrap shrink-0"
                   >
-                    <span>AI Prompts</span>
-                    <ChevronDown className="w-3.5 h-3.5" />
+                    <span>Important Pages</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform ${
+                        openDropdown === 'important-pages' ? 'rotate-180' : ''
+                      }`}
+                    />
                   </button>
-                  {openDropdown === 'prompts' && (
+                  {openDropdown === 'important-pages' && (
                     <div className="absolute left-0 top-full mt-2 w-56 bg-white border border-[#E5E7F3] rounded-xl shadow-lg p-1.5 z-40">
                       <button
                         type="button"
                         onClick={() => {
-                          setActiveCategory('all');
                           setOpenDropdown(null);
+                          handleSimulatedNav('About Us', '/about-us/');
                         }}
-                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
+                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg transition-colors"
                       >
-                        Featured AI Prompts
+                        About Us
                       </button>
                       <button
                         type="button"
                         onClick={() => {
-                          setActiveCategory('ai-photo-prompts');
-                          handleSimulatedNav('AI Photo Prompts', '/category/ai-photo-prompts/');
+                          setOpenDropdown(null);
+                          handleSimulatedNav('Contact Us', '/contact-us/');
                         }}
-                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
+                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg transition-colors"
                       >
-                        AI Photo Prompts
+                        Contact Us
                       </button>
                       <button
                         type="button"
                         onClick={() => {
-                          setActiveCategory('trending-prompts');
-                          handleSimulatedNav('Trending Prompts', '/category/trending-prompts/');
+                          setOpenDropdown(null);
+                          handleSimulatedNav('Privacy Policy', '/privacy-policy/');
                         }}
-                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
+                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg transition-colors"
                       >
-                        Trending Prompts
+                        Privacy Policy
                       </button>
                       <button
                         type="button"
                         onClick={() => {
-                          setActiveCategory('social-media-prompts');
-                          handleSimulatedNav('Social Media Prompts', '/category/social-media-prompts/');
+                          setOpenDropdown(null);
+                          handleSimulatedNav('Disclaimer', '/disclaimer/');
                         }}
-                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
+                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg transition-colors"
                       >
-                        Social Media Prompts
+                        Disclaimer
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setOpenDropdown(null);
+                          handleSimulatedNav('Terms & Conditions', '/terms-and-conditions/');
+                        }}
+                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg transition-colors"
+                      >
+                        Terms &amp; Conditions
                       </button>
                     </div>
                   )}
                 </div>
-
-                {/* Categories Dropdown (Strictly 3 Approved Categories) */}
-                <div className="relative">
-                  <button
-                    type="button"
-                    aria-expanded={openDropdown === 'categories'}
-                    onClick={() => setOpenDropdown(openDropdown === 'categories' ? null : 'categories')}
-                    className="inline-flex items-center gap-1 hover:text-[#0F172A] transition-colors whitespace-nowrap shrink-0"
-                  >
-                    <span>Categories</span>
-                    <ChevronDown className="w-3.5 h-3.5" />
-                  </button>
-                  {openDropdown === 'categories' && (
-                    <div className="absolute left-0 top-full mt-2 w-56 bg-white border border-[#E5E7F3] rounded-xl shadow-lg p-1.5 z-40">
-                      <button
-                        type="button"
-                        onClick={() => handleSimulatedNav('AI Photo Prompts', '/category/ai-photo-prompts/')}
-                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
-                      >
-                        AI Photo Prompts
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleSimulatedNav('Trending Prompts', '/category/trending-prompts/')}
-                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
-                      >
-                        Trending Prompts
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => handleSimulatedNav('Social Media Prompts', '/category/social-media-prompts/')}
-                        className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
-                      >
-                        Social Media Prompts
-                      </button>
-                    </div>
-                  )}
-                </div>
-
-                {/* Conditional Tools Dropdown — Only rendered when real WP Tools Menu exists */}
-                {simulateToolsMenuAssigned && (
-                  <div className="relative">
-                    <button
-                      type="button"
-                      aria-expanded={openDropdown === 'tools'}
-                      onClick={() => setOpenDropdown(openDropdown === 'tools' ? null : 'tools')}
-                      className="inline-flex items-center gap-1 hover:text-[#0F172A] transition-colors whitespace-nowrap shrink-0"
-                    >
-                      <span>Tools</span>
-                      <ChevronDown className="w-3.5 h-3.5" />
-                    </button>
-                    {openDropdown === 'tools' && (
-                      <div className="absolute left-0 top-full mt-2 w-56 bg-white border border-[#E5E7F3] rounded-xl shadow-lg p-1.5 z-40">
-                        <button
-                          type="button"
-                          onClick={() => handleSimulatedNav('Assigned Tool Page', '/prompt-tool/')}
-                          className="w-full text-left px-3 py-2 text-sm text-slate-700 hover:bg-[#F6F5FF] hover:text-[#5B3DF5] rounded-lg"
-                        >
-                          Assigned WP Tool Item
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                )}
-
-                <button
-                  type="button"
-                  onClick={() => handleSimulatedNav('Blog Archive', '/blog/')}
-                  className="hover:text-[#0F172A] transition-colors whitespace-nowrap shrink-0"
-                >
-                  Blog
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleSimulatedNav('About Page', '/about/')}
-                  className="hover:text-[#0F172A] transition-colors whitespace-nowrap shrink-0"
-                >
-                  About
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleSimulatedNav('Contact Page', '/contact/')}
-                  className="hover:text-[#0F172A] transition-colors whitespace-nowrap shrink-0"
-                >
-                  Contact
-                </button>
               </nav>
             )}
 
@@ -517,53 +486,97 @@ export const StagingHomepagePreview: React.FC = () => {
             <div className="bg-white border-t border-[#E5E7F3] px-5 py-4 space-y-2 text-sm">
               <button
                 type="button"
-                onClick={() => handleSimulatedNav('Home', '/')}
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  handleSimulatedNav('Home', '/');
+                }}
                 className="block w-full text-left py-1.5 font-semibold text-[#5B3DF5]"
               >
                 Home
               </button>
-              <p className="pt-2 text-xs font-semibold text-slate-400">Main Categories</p>
               <button
                 type="button"
-                onClick={() => handleSimulatedNav('AI Photo Prompts', '/category/ai-photo-prompts/')}
-                className="block w-full text-left py-1.5 text-slate-700"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  setActiveCategory('ai-photo-prompts');
+                  handleSimulatedNav('AI Photo Prompts', '/category/ai-photo-prompts/');
+                }}
+                className="block w-full text-left py-1.5 text-slate-700 hover:text-[#5B3DF5]"
               >
                 AI Photo Prompts
               </button>
               <button
                 type="button"
-                onClick={() => handleSimulatedNav('Trending Prompts', '/category/trending-prompts/')}
-                className="block w-full text-left py-1.5 text-slate-700"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  setActiveCategory('trending-prompts');
+                  handleSimulatedNav('Trending Prompts', '/category/trending-prompts/');
+                }}
+                className="block w-full text-left py-1.5 text-slate-700 hover:text-[#5B3DF5]"
               >
                 Trending Prompts
               </button>
               <button
                 type="button"
-                onClick={() => handleSimulatedNav('Social Media Prompts', '/category/social-media-prompts/')}
-                className="block w-full text-left py-1.5 text-slate-700"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  setActiveCategory('social-media-prompts');
+                  handleSimulatedNav('Social Media Prompts', '/category/social-media-prompts/');
+                }}
+                className="block w-full text-left py-1.5 text-slate-700 hover:text-[#5B3DF5]"
               >
                 Social Media Prompts
               </button>
+              <p className="pt-2 text-xs font-semibold uppercase tracking-wider text-slate-400">Important Pages</p>
               <button
                 type="button"
-                onClick={() => handleSimulatedNav('Blog', '/blog/')}
-                className="block w-full text-left py-1.5 text-slate-700"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  handleSimulatedNav('About Us', '/about-us/');
+                }}
+                className="block w-full text-left py-1 text-slate-600 hover:text-[#5B3DF5]"
               >
-                Blog
+                About Us
               </button>
               <button
                 type="button"
-                onClick={() => handleSimulatedNav('About', '/about/')}
-                className="block w-full text-left py-1.5 text-slate-700"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  handleSimulatedNav('Contact Us', '/contact-us/');
+                }}
+                className="block w-full text-left py-1 text-slate-600 hover:text-[#5B3DF5]"
               >
-                About
+                Contact Us
               </button>
               <button
                 type="button"
-                onClick={() => handleSimulatedNav('Contact', '/contact/')}
-                className="block w-full text-left py-1.5 text-slate-700"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  handleSimulatedNav('Privacy Policy', '/privacy-policy/');
+                }}
+                className="block w-full text-left py-1 text-slate-600 hover:text-[#5B3DF5]"
               >
-                Contact
+                Privacy Policy
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  handleSimulatedNav('Disclaimer', '/disclaimer/');
+                }}
+                className="block w-full text-left py-1 text-slate-600 hover:text-[#5B3DF5]"
+              >
+                Disclaimer
+              </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setMobileDrawerOpen(false);
+                  handleSimulatedNav('Terms & Conditions', '/terms-and-conditions/');
+                }}
+                className="block w-full text-left py-1 text-slate-600 hover:text-[#5B3DF5]"
+              >
+                Terms &amp; Conditions
               </button>
             </div>
           )}
@@ -654,40 +667,58 @@ export const StagingHomepagePreview: React.FC = () => {
               </div>
             </div>
 
-            {/* Custom AI Photography Visual Composition */}
+            {/* Photography Visual Composition with 3 Real Images */}
             <div className={viewport === 'desktop' ? 'col-span-5' : ''}>
-              <div className="grid grid-cols-12 gap-3">
-                <div className="col-span-7 bg-white border border-[#E5E7F3] rounded-2xl overflow-hidden">
-                  <div className="h-44 bg-gradient-to-br from-indigo-100 via-violet-100 to-amber-50 flex flex-col items-center justify-center p-4 text-center">
-                    <Camera className="w-9 h-9 text-[#5B3DF5] mb-2" />
-                    <span className="font-display text-xs font-bold text-[#0F172A]">85mm Editorial Portrait</span>
-                    <span className="text-[11px] text-slate-600 mt-0.5">Customizable via WP Media Library</span>
+              <div className={`grid gap-3 ${viewport === 'mobile' ? 'grid-cols-1' : 'grid-cols-12'}`}>
+                {/* Image 1: Main Portrait Card */}
+                <div className={`${viewport === 'mobile' ? 'col-span-1' : 'col-span-7'} bg-white border border-[#E5E7F3] rounded-2xl overflow-hidden flex flex-col shadow-xs group`}>
+                  <div className="relative overflow-hidden bg-violet-50">
+                    <img
+                      src="https://promptsyra.com/wp-content/uploads/2026/10/promptsyra-hero-portrait.webp"
+                      alt="Portrait Study · 85mm Soft Rim Light AI Photography Prompt Example"
+                      className="w-full h-52 md:h-60 object-cover object-center transition-transform duration-300 group-hover:scale-102"
+                      loading="eager"
+                    />
                   </div>
-                  <div className="p-3.5">
+                  <div className="p-3.5 flex-1 flex flex-col justify-center">
                     <p className="font-display text-xs font-bold text-[#0F172A]">
-                      Portrait Study · Soft Window Key
+                      Portrait Study · 85mm Soft Rim Light
                     </p>
                     <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
-                      &ldquo;Natural directional daylight, shallow depth of field, warm neutral backdrop, 85mm f/1.8...&rdquo;
+                      &ldquo;Natural window key light, shallow depth of field, warm editorial skin tones, 85mm f/1.8...&rdquo;
                     </p>
                   </div>
                 </div>
 
-                <div className="col-span-5 flex flex-col gap-3">
-                  <div className="flex-1 bg-white border border-[#E5E7F3] rounded-2xl overflow-hidden flex flex-col">
-                    <div className="flex-1 min-h-[92px] bg-gradient-to-br from-violet-100 to-sky-100 flex items-center justify-center">
-                      <TrendingUp className="w-6 h-6 text-[#5B3DF5]" />
+                {/* Right Stack: Creative Studio & 9:16 Social Visuals */}
+                <div className={`${viewport === 'mobile' ? 'col-span-1 grid grid-cols-2' : 'col-span-5 flex flex-col'} gap-3`}>
+                  {/* Image 2: Creative Studio Card */}
+                  <div className="flex-1 bg-white border border-[#E5E7F3] rounded-2xl overflow-hidden flex flex-col shadow-xs group">
+                    <div className="relative overflow-hidden bg-violet-50">
+                      <img
+                        src="https://promptsyra.com/wp-content/uploads/2026/10/promptsyra-creative-studio.webp"
+                        alt="Creative Studio Setup AI Photography Prompt Example"
+                        className="w-full h-24 md:h-28 object-cover object-center transition-transform duration-300 group-hover:scale-102"
+                        loading="eager"
+                      />
                     </div>
-                    <div className="p-3">
-                      <p className="font-display text-[11px] font-bold text-[#0F172A]">Creative Studio Lighting</p>
+                    <div className="p-2.5 flex-1 flex items-center">
+                      <p className="font-display text-[11px] font-bold text-[#0F172A] leading-tight">Creative Studio Setup</p>
                     </div>
                   </div>
-                  <div className="flex-1 bg-white border border-[#E5E7F3] rounded-2xl overflow-hidden flex flex-col">
-                    <div className="flex-1 min-h-[92px] bg-gradient-to-br from-amber-50 to-indigo-100 flex items-center justify-center">
-                      <Smartphone className="w-6 h-6 text-[#5B3DF5]" />
+
+                  {/* Image 3: Social Visuals Card */}
+                  <div className="flex-1 bg-white border border-[#E5E7F3] rounded-2xl overflow-hidden flex flex-col shadow-xs group">
+                    <div className="relative overflow-hidden bg-violet-50">
+                      <img
+                        src="https://promptsyra.com/wp-content/uploads/2026/10/promptsyra-social-visuals.webp"
+                        alt="9:16 Social Visuals AI Photography Prompt Example"
+                        className="w-full h-24 md:h-28 object-cover object-center transition-transform duration-300 group-hover:scale-102"
+                        loading="lazy"
+                      />
                     </div>
-                    <div className="p-3">
-                      <p className="font-display text-[11px] font-bold text-[#0F172A]">9:16 Social Visuals</p>
+                    <div className="p-2.5 flex-1 flex items-center">
+                      <p className="font-display text-[11px] font-bold text-[#0F172A] leading-tight">9:16 Social Visuals</p>
                     </div>
                   </div>
                 </div>

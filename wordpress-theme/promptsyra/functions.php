@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'PROMPTSYRA_VERSION', '2.4.0' );
+define( 'PROMPTSYRA_VERSION', '2.4.1' );
 define( 'PROMPTSYRA_DIR', get_stylesheet_directory() );
 define( 'PROMPTSYRA_URI', get_stylesheet_directory_uri() );
 
@@ -472,6 +472,53 @@ function promptsyra_front_social_meta_fallback() {
 	<?php
 }
 add_action( 'wp_head', 'promptsyra_front_social_meta_fallback', 5 );
+
+
+/**
+ * Official PromptSyra Social Links Specification.
+ *
+ * @return array<string, array<string, string>>
+ */
+function promptsyra_get_official_social_links() {
+	return array(
+		'instagram' => array(
+			'key'          => 'instagram',
+			'name'         => __( 'Instagram', 'promptsyra' ),
+			'handle'       => '@promptsyra',
+			'badge'        => __( 'Visual Gallery', 'promptsyra' ),
+			'title'        => __( 'Instagram Visual Gallery', 'promptsyra' ),
+			'desc'         => __( 'Browse curated portrait lighting setups, photo prompt ideas, and visual aesthetics crafted for modern creators.', 'promptsyra' ),
+			'button_label' => __( 'Follow on Instagram', 'promptsyra' ),
+			'url'          => 'https://www.instagram.com/promptsyra',
+			'internal_slug'=> 'instagram',
+			'internal_url' => home_url( '/instagram/' ),
+		),
+		'facebook'  => array(
+			'key'          => 'facebook',
+			'name'         => __( 'Facebook', 'promptsyra' ),
+			'handle'       => 'PromptSyra',
+			'badge'        => __( 'Community Updates', 'promptsyra' ),
+			'title'        => __( 'Facebook Community Updates', 'promptsyra' ),
+			'desc'         => __( 'Stay updated with newly published prompt guides, creative themes, creator discussions, and website announcements.', 'promptsyra' ),
+			'button_label' => __( 'Follow on Facebook', 'promptsyra' ),
+			'url'          => 'https://www.facebook.com/people/PromptSyra/61595584906422/',
+			'internal_slug'=> 'facebook',
+			'internal_url' => home_url( '/facebook/' ),
+		),
+		'whatsapp'  => array(
+			'key'          => 'whatsapp',
+			'name'         => __( 'WhatsApp Channel', 'promptsyra' ),
+			'handle'       => 'PromptSyra',
+			'badge'        => __( 'Official Channel', 'promptsyra' ),
+			'title'        => __( 'WhatsApp Official Channel', 'promptsyra' ),
+			'desc'         => __( 'Get instant mobile alerts and prompt drops directly to your phone. 100% private one-way broadcast.', 'promptsyra' ),
+			'button_label' => __( 'Join WhatsApp Channel', 'promptsyra' ),
+			'url'          => 'https://whatsapp.com/channel/0029VbDkVtP7T8bZzLpWMq2d',
+			'internal_slug'=> 'whatsapp-channel',
+			'internal_url' => home_url( '/whatsapp-channel/' ),
+		),
+	);
+}
 
 require_once PROMPTSYRA_DIR . '/inc/customizer.php';
 require_once PROMPTSYRA_DIR . '/inc/contact-form.php';
