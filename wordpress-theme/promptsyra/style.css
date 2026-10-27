@@ -1,0 +1,19 @@
+/*
+Theme Name: PromptSyra
+Theme URI: https://promptsyra.com/
+Author: PromptSyra Editorial Team
+Author URI: https://promptsyra.com/
+Description: Production WordPress theme for PromptSyra.com. Self-contained standalone package featuring the upgraded v2.4.0 PromptSyra homepage (refined Hero Benefits Bar, tailored Category Discovery Triptych, connected 3-Step AI Prompt Workflow, and interactive Why Choose PromptSyra? specimen & customization guide), 2-column single-post article layout, dynamic 3-author editorial profiles (Syra Ansari, Arjun Patel, Neha Joshi), About Us, functional Contact Us form (contact@promptsyra.com), Privacy Policy, Disclaimer, and Terms & Conditions.
+Version: 2.4.0
+Requires at least: 6.0
+Tested up to: 6.7
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: promptsyra
+*/
+
+/*
+ * PromptSyra styles are modularly loaded from assets/css/promptsyra-home.css,
+ * assets/css/promptsyra-single.css (single posts), and assets/css/promptsyra-pages.css (pages & author archives).
+ */

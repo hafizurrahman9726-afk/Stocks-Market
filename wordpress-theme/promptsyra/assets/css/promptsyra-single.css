@@ -1,0 +1,1613 @@
+/**
+ * PromptSyra Single-Post Article Stylesheet (v2.2.0)
+ *
+ * Strictly scoped to single-post pages (`body.ps-single-body`, `.ps-single-layout`,
+ * `.ps-ai-prompt-box`, `.az-ai-prompt-box`, `.ps-comments-section`) so front-page.php,
+ * navigation, and category archives remain 100% unaffected.
+ */
+
+body.ps-single-body {
+	background-color: #ffffff;
+	color: #0f172a;
+}
+
+body.ps-single-body .ps-single-main {
+	background-color: #ffffff;
+}
+
+/* Safely suppress any third-party SEO breadcrumb injected directly inside single-post main */
+body.ps-single-body .ps-single-main > .rank-math-breadcrumb,
+body.ps-single-body .ps-single-main > .yoast-breadcrumbs {
+	display: none;
+}
+
+/* 2-Column Reference Article Layout (Main Article + 340px Sticky Right Sidebar) */
+.ps-single-layout {
+	max-width: 1240px;
+	margin: 0 auto;
+	padding: 36px 20px 68px;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 36px;
+}
+
+@media (min-width: 1024px) {
+	.ps-single-layout {
+		grid-template-columns: minmax(0, 1fr) 340px;
+		align-items: start;
+		gap: 40px;
+	}
+}
+
+.ps-single-main-col {
+	min-width: 0;
+}
+
+.ps-single-article-card {
+	background: #ffffff;
+	min-width: 0;
+}
+
+/* Single Article Title */
+.ps-entry-title {
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: clamp(1.85rem, 3.6vw, 2.55rem);
+	font-weight: 800;
+	line-height: 1.2;
+	letter-spacing: -0.025em;
+	color: #0f172a;
+	margin: 0 0 18px 0;
+	overflow-wrap: break-word;
+}
+
+/* Optional Excerpt / Lead Subtitle (shown only when manual excerpt exists) */
+.ps-entry-lead {
+	font-family: 'DM Sans', sans-serif;
+	font-size: 1.075rem;
+	line-height: 1.65;
+	color: #475569;
+	margin: 0 0 20px 0;
+}
+
+/* Bordered Author + Date + Read-Time Meta Bar */
+.ps-entry-meta-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 14px 20px;
+	padding: 14px 0;
+	margin-bottom: 28px;
+	border-top: 1px solid #e2e8f0;
+	border-bottom: 1px solid #e2e8f0;
+	font-family: 'DM Sans', sans-serif;
+}
+
+.ps-meta-author-box {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+
+.ps-meta-avatar-link {
+	display: inline-flex;
+	flex-shrink: 0;
+	text-decoration: none;
+}
+
+.ps-meta-avatar {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid rgba(124, 58, 237, 0.3);
+	display: block;
+	background: #f5f3ff;
+}
+
+.ps-meta-avatar-fallback {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #7c3aed, #4f46e5);
+	color: #ffffff;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.9rem;
+	font-weight: 800;
+	border: 2px solid rgba(124, 58, 237, 0.25);
+}
+
+.ps-meta-author-info {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+.ps-meta-byline {
+	font-size: 0.92rem;
+	color: #475569;
+	line-height: 1.3;
+}
+
+.ps-meta-author-link {
+	font-weight: 700;
+	color: #0f172a;
+	text-decoration: none;
+	transition: color 0.18s ease;
+}
+
+.ps-meta-author-link:hover {
+	color: #7c3aed;
+}
+
+.ps-meta-role-tag {
+	font-size: 0.75rem;
+	font-weight: 600;
+	color: #64748b;
+	line-height: 1.2;
+}
+
+.ps-meta-details {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px 14px;
+	font-size: 0.84rem;
+	color: #64748b;
+}
+
+.ps-meta-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.ps-meta-item svg {
+	color: #7c3aed;
+	flex-shrink: 0;
+}
+
+.ps-meta-item strong {
+	color: #334155;
+	font-weight: 600;
+}
+
+.ps-meta-dot {
+	color: #cbd5e1;
+	user-select: none;
+}
+
+/* Featured Image */
+.ps-entry-featured-media {
+	margin: 0 0 32px 0;
+	border-radius: 20px;
+	overflow: hidden;
+	border: 1px solid #e2e8f0;
+	background: #f8fafc;
+}
+
+.ps-entry-featured-media img {
+	width: 100%;
+	height: auto;
+	max-height: 540px;
+	object-fit: cover;
+	display: block;
+}
+
+.ps-entry-featured-caption {
+	padding: 10px 16px;
+	font-size: 0.8125rem;
+	color: #64748b;
+	background: #f8fafc;
+	border-top: 1px solid #e2e8f0;
+}
+
+/* Table of Contents (Supports native .ps-toc-container AND TOC Plus #toc_container) */
+.ps-toc-container,
+.ps-single-entry #toc_container {
+	background: #f8fafc !important;
+	border: 1px solid #e2e8f0 !important;
+	border-radius: 16px !important;
+	padding: 18px 22px !important;
+	margin: 0 0 28px 0 !important;
+	width: 100% !important;
+	box-sizing: border-box;
+}
+
+.ps-toc-header,
+.ps-single-entry #toc_container .toc_title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin: 0 !important;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.98rem !important;
+	font-weight: 800 !important;
+	color: #0f172a !important;
+}
+
+.ps-toc-title {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.ps-toc-title svg {
+	color: #7c3aed;
+}
+
+.ps-toc-toggle {
+	appearance: none;
+	border: 1px solid #cbd5e1;
+	background: #ffffff;
+	color: #475569;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 0.76rem;
+	font-weight: 700;
+	padding: 4px 11px;
+	border-radius: 9999px;
+	cursor: pointer;
+	transition: all 0.18s ease;
+}
+
+.ps-toc-toggle:hover {
+	border-color: #7c3aed;
+	color: #7c3aed;
+}
+
+.ps-toc-list,
+.ps-single-entry #toc_container ul.toc_list {
+	list-style: none !important;
+	margin: 14px 0 0 0 !important;
+	padding: 14px 0 0 0 !important;
+	border-top: 1px solid #e2e8f0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.ps-toc-list.is-collapsed {
+	display: none !important;
+}
+
+.ps-toc-item {
+	margin: 0 !important;
+	line-height: 1.45;
+}
+
+.ps-toc-item.ps-toc-level-3 {
+	padding-left: 20px;
+}
+
+.ps-toc-item a,
+.ps-single-entry #toc_container ul.toc_list a {
+	display: inline-flex;
+	align-items: baseline;
+	gap: 8px;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 0.92rem;
+	font-weight: 500;
+	color: #334155 !important;
+	text-decoration: none !important;
+	transition: color 0.16s ease;
+}
+
+.ps-toc-item a:hover,
+.ps-single-entry #toc_container ul.toc_list a:hover {
+	color: #7c3aed !important;
+}
+
+.ps-toc-num,
+.ps-single-entry #toc_container .toc_number {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.8rem;
+	font-weight: 700;
+	color: #7c3aed;
+	min-width: 18px;
+}
+
+/* Main Article Content Typography & Hierarchy */
+.ps-single-entry {
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1.0625rem;
+	line-height: 1.78;
+	color: #334155;
+	overflow-wrap: break-word;
+}
+
+.ps-single-entry > *:first-child {
+	margin-top: 0;
+}
+
+.ps-single-entry p {
+	margin: 0 0 1.35em 0;
+}
+
+.ps-single-entry h2 {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: clamp(1.42rem, 2.7vw, 1.82rem);
+	font-weight: 800;
+	line-height: 1.28;
+	letter-spacing: -0.02em;
+	color: #0f172a;
+	margin: 2.15em 0 0.75em;
+	scroll-margin-top: 96px;
+}
+
+.ps-single-entry h3 {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: clamp(1.18rem, 2.1vw, 1.42rem);
+	font-weight: 700;
+	line-height: 1.35;
+	letter-spacing: -0.015em;
+	color: #0f172a;
+	margin: 1.75em 0 0.65em;
+	scroll-margin-top: 96px;
+}
+
+.ps-single-entry h4 {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 1.1rem;
+	font-weight: 700;
+	color: #0f172a;
+	margin: 1.5em 0 0.55em;
+}
+
+.ps-single-entry a:not(.ps-btn-ai-tool):not(.az-btn-ai-tool):not(.wp-block-button__link) {
+	color: #6d28d9;
+	font-weight: 600;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-color: rgba(109, 40, 217, 0.35);
+	transition: color 0.16s ease, text-decoration-color 0.16s ease;
+}
+
+.ps-single-entry a:not(.ps-btn-ai-tool):not(.az-btn-ai-tool):not(.wp-block-button__link):hover {
+	color: #4c1d95;
+	text-decoration-color: #4c1d95;
+}
+
+.ps-single-entry ul,
+.ps-single-entry ol {
+	margin: 0 0 1.45em 0;
+	padding-left: 1.45rem;
+}
+
+.ps-single-entry li {
+	margin-bottom: 0.55em;
+}
+
+.ps-single-entry ul li::marker,
+.ps-single-entry ol li::marker {
+	color: #7c3aed;
+	font-weight: 700;
+}
+
+.ps-single-entry strong {
+	color: #0f172a;
+	font-weight: 700;
+}
+
+.ps-single-entry img {
+	max-width: 100%;
+	height: auto;
+	border-radius: 16px;
+}
+
+.ps-single-entry figure.wp-block-image {
+	margin: 1.75rem 0;
+}
+
+.ps-single-entry figure.wp-block-image figcaption {
+	margin-top: 8px;
+	font-size: 0.84rem;
+	color: #64748b;
+	text-align: center;
+}
+
+/* Editorial Tip Callouts & Blockquotes */
+.ps-single-entry blockquote,
+.ps-single-entry .ps-tip-callout,
+.ps-single-entry .az-tip-callout {
+	margin: 1.65rem 0;
+	padding: 16px 20px;
+	background: #f5f3ff;
+	border-left: 4px solid #7c3aed;
+	border-radius: 0 14px 14px 0;
+	color: #1e293b;
+	font-size: 0.96rem;
+	line-height: 1.68;
+}
+
+.ps-single-entry blockquote p:last-child,
+.ps-single-entry .ps-tip-callout p:last-child,
+.ps-single-entry .az-tip-callout p:last-child {
+	margin-bottom: 0;
+}
+
+/* Prompt Image-Details & Specification Tables (Responsive Scrollable Container) */
+.ps-single-entry figure.wp-block-table {
+	margin: 1.5rem 0 1.85rem;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+	background: #ffffff;
+}
+
+.ps-single-entry table {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 0.925rem;
+	line-height: 1.55;
+	min-width: 440px;
+}
+
+.ps-single-entry figure.wp-block-table table {
+	margin: 0;
+	border: 0;
+}
+
+.ps-single-entry > table {
+	display: block;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+	margin: 1.5rem 0 1.85rem;
+}
+
+.ps-single-entry th,
+.ps-single-entry td {
+	padding: 11px 16px;
+	text-align: left;
+	border-bottom: 1px solid #f1f5f9;
+	vertical-align: top;
+}
+
+.ps-single-entry tr:last-child td {
+	border-bottom: 0;
+}
+
+.ps-single-entry thead th {
+	background: #f8fafc;
+	color: #0f172a;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-weight: 700;
+	font-size: 0.84rem;
+	letter-spacing: 0.02em;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.ps-single-entry tbody tr:nth-child(even) {
+	background: #fcfdff;
+}
+
+.ps-single-entry tbody td:first-child {
+	font-weight: 700;
+	color: #0f172a;
+	width: 34%;
+	background: rgba(248, 250, 252, 0.7);
+}
+
+/* ==========================================================================
+   Interactive AI Prompt Card (Supports .ps-ai-prompt-box & .az-ai-prompt-box)
+   ========================================================================== */
+.ps-ai-prompt-box,
+.az-ai-prompt-box {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 16px;
+	padding: 24px;
+	margin: 1.85rem 0 2.15rem;
+	box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.05);
+	position: relative;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.ps-ai-prompt-box:hover,
+.az-ai-prompt-box:hover {
+	border-color: #cbd5e1;
+	box-shadow: 0 8px 24px -6px rgba(15, 23, 42, 0.07);
+}
+
+.ps-prompt-badge,
+.az-prompt-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.73rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #6d28d9;
+	background: #f5f3ff;
+	border: 1px solid rgba(124, 58, 237, 0.2);
+	padding: 4px 12px;
+	border-radius: 9999px;
+	margin-bottom: 14px;
+}
+
+.ps-prompt-content-wrapper,
+.az-prompt-content-wrapper {
+	position: relative;
+	max-height: 96px;
+	overflow: hidden;
+	transition: max-height 0.32s ease;
+}
+
+.ps-prompt-content-wrapper.is-expanded,
+.ps-prompt-content-wrapper.az-expanded,
+.az-prompt-content-wrapper.is-expanded,
+.az-prompt-content-wrapper.az-expanded {
+	max-height: 2400px;
+}
+
+.ps-prompt-text-preview,
+.az-prompt-text-preview {
+	font-size: 0.965rem !important;
+	line-height: 1.68 !important;
+	color: #334155 !important;
+	margin: 0 !important;
+	padding-bottom: 6px;
+	white-space: pre-line;
+	word-break: break-word;
+}
+
+.ps-prompt-gradient-fade,
+.az-prompt-gradient-fade {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 44px;
+	background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff 92%);
+	pointer-events: none;
+	transition: opacity 0.22s ease;
+}
+
+.ps-prompt-content-wrapper.is-expanded .ps-prompt-gradient-fade,
+.ps-prompt-content-wrapper.az-expanded .ps-prompt-gradient-fade,
+.az-prompt-content-wrapper.is-expanded .az-prompt-gradient-fade,
+.az-prompt-content-wrapper.az-expanded .az-prompt-gradient-fade,
+.ps-prompt-content-wrapper.is-short .ps-prompt-gradient-fade {
+	opacity: 0;
+}
+
+.ps-prompt-button-bar,
+.az-prompt-button-bar {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	align-items: center;
+	margin-top: 16px;
+	padding-top: 16px;
+	border-top: 1px dashed #e2e8f0;
+}
+
+/* Primary Yellow Action Buttons: View Prompt & Copy Prompt (Matches Reference #FFD400) */
+.ps-btn-view-prompt,
+.az-btn-view-prompt,
+.ps-btn-copy-prompt,
+.az-btn-copy-prompt {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	background: #FFD400;
+	color: #111111;
+	border: 1px solid #E0B800;
+	padding: 9px 18px;
+	border-radius: 9999px;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.85rem;
+	font-weight: 700;
+	line-height: 1.2;
+	cursor: pointer;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+	transition: background-color 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease, color 0.18s ease;
+	user-select: none;
+	text-decoration: none;
+}
+
+.ps-btn-view-prompt:hover,
+.az-btn-view-prompt:hover,
+.ps-btn-copy-prompt:hover,
+.az-btn-copy-prompt:hover {
+	background: #FACC15;
+	color: #000000;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 10px rgba(234, 179, 8, 0.22);
+}
+
+.ps-btn-view-prompt:focus-visible,
+.az-btn-view-prompt:focus-visible,
+.ps-btn-copy-prompt:focus-visible,
+.az-btn-copy-prompt:focus-visible {
+	outline: 2px solid #7c3aed;
+	outline-offset: 2px;
+}
+
+.ps-btn-copy-prompt.is-copied,
+.ps-btn-copy-prompt.az-copied,
+.az-btn-copy-prompt.is-copied,
+.az-btn-copy-prompt.az-copied {
+	background: #10B981 !important;
+	border-color: #059669 !important;
+	color: #ffffff !important;
+}
+
+/* AI Tool Launchers: ChatGPT, Gemini, Grok */
+.ps-btn-ai-tool,
+.az-btn-ai-tool {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	background: #f8fafc;
+	color: #1e293b !important;
+	border: 1px solid #cbd5e1;
+	padding: 8px 14px;
+	border-radius: 9999px;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 0.82rem;
+	font-weight: 600;
+	line-height: 1.2;
+	text-decoration: none !important;
+	transition: all 0.18s ease;
+}
+
+.ps-btn-ai-tool:hover,
+.az-btn-ai-tool:hover {
+	background: #f5f3ff;
+	border-color: #7c3aed;
+	color: #6d28d9 !important;
+	transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+	.ps-ai-prompt-box,
+	.az-ai-prompt-box {
+		padding: 18px;
+	}
+
+	.ps-btn-view-prompt,
+	.az-btn-view-prompt,
+	.ps-btn-copy-prompt,
+	.az-btn-copy-prompt {
+		flex: 1 1 calc(50% - 6px);
+		padding: 10px 12px;
+		font-size: 0.82rem;
+	}
+
+	.ps-btn-ai-tool,
+	.az-btn-ai-tool {
+		flex: 1 1 auto;
+		padding: 8px 11px;
+		font-size: 0.79rem;
+	}
+}
+
+/* Previous / Next Post Navigation Below Article */
+.ps-post-navigation {
+	margin-top: 44px;
+	padding-top: 28px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.ps-post-nav-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 16px;
+}
+
+@media (min-width: 640px) {
+	.ps-post-nav-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}
+
+.ps-post-nav-card {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 18px 20px;
+	border-radius: 16px;
+	border: 1px solid #e2e8f0;
+	background: #f8fafc;
+	text-decoration: none;
+	transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.18s ease;
+}
+
+.ps-post-nav-card:hover {
+	border-color: #7c3aed;
+	background: #ffffff;
+	transform: translateY(-1px);
+}
+
+.ps-post-nav-card.is-next {
+	text-align: right;
+	align-items: flex-end;
+}
+
+.ps-post-nav-label {
+	font-size: 0.75rem;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #7c3aed;
+}
+
+.ps-post-nav-title {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.96rem;
+	font-weight: 700;
+	color: #0f172a;
+	line-height: 1.4;
+}
+
+/* Related Prompts Section Below Post Navigation */
+.ps-single-related {
+	margin-top: 44px;
+	padding-top: 32px;
+	border-top: 1px solid #e2e8f0;
+}
+
+.ps-single-related-heading {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 1.35rem;
+	font-weight: 800;
+	color: #0f172a;
+	margin: 0 0 20px 0;
+}
+
+.ps-single-related-grid {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 18px;
+}
+
+@media (min-width: 640px) {
+	.ps-single-related-grid {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.ps-related-mini-card {
+	border: 1px solid #e2e8f0;
+	border-radius: 16px;
+	overflow: hidden;
+	background: #ffffff;
+	display: flex;
+	flex-direction: column;
+	transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ps-related-mini-card:hover {
+	border-color: #cbd5e1;
+	box-shadow: 0 8px 20px -6px rgba(15, 23, 42, 0.08);
+}
+
+.ps-related-mini-thumb-link {
+	display: block;
+	aspect-ratio: 16 / 10;
+	background: #f1f5f9;
+	overflow: hidden;
+	text-decoration: none;
+}
+
+.ps-related-mini-thumb {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.ps-related-mini-fallback {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #f5f3ff, #eef2ff);
+	color: #6d28d9;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.8rem;
+	font-weight: 700;
+}
+
+.ps-related-mini-body {
+	padding: 14px 16px 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	flex: 1;
+}
+
+.ps-related-mini-title {
+	margin: 0;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.94rem;
+	font-weight: 700;
+	line-height: 1.4;
+}
+
+.ps-related-mini-title a {
+	color: #0f172a;
+	text-decoration: none;
+}
+
+.ps-related-mini-title a:hover {
+	color: #7c3aed;
+}
+
+.ps-related-mini-date {
+	font-size: 0.76rem;
+	color: #64748b;
+	margin-top: auto;
+}
+
+/* ==========================================================================
+   Right Sticky Sidebar (Post Author + Trending Prompts + Categories)
+   ========================================================================== */
+.ps-single-sidebar-col {
+	min-width: 0;
+}
+
+.ps-single-sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+@media (min-width: 1024px) {
+	.ps-single-sidebar {
+		position: sticky;
+		top: 96px;
+	}
+}
+
+.ps-sidebar-widget {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 20px;
+	padding: 24px;
+	box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.04);
+}
+
+.ps-widget-title {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 1.05rem;
+	font-weight: 800;
+	color: #0f172a;
+	margin: 0 0 18px 0;
+	padding-bottom: 12px;
+	border-bottom: 1px solid #f1f5f9;
+	position: relative;
+}
+
+.ps-widget-title::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 36px;
+	height: 3px;
+	background: #7c3aed;
+	border-radius: 9999px;
+}
+
+/* Widget 1: Post Author */
+.ps-sidebar-author-card {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.ps-sidebar-author-avatar-wrap {
+	margin-bottom: 12px;
+}
+
+.ps-sidebar-author-avatar {
+	width: 76px;
+	height: 76px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 3px solid rgba(124, 58, 237, 0.18);
+	display: block;
+}
+
+.ps-sidebar-author-fallback {
+	width: 76px;
+	height: 76px;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(135deg, #7c3aed, #4f46e5);
+	color: #ffffff;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 1.35rem;
+	font-weight: 800;
+	border: 3px solid rgba(124, 58, 237, 0.18);
+}
+
+.ps-sidebar-author-name {
+	margin: 0 0 6px 0;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 1.1rem;
+	font-weight: 800;
+	line-height: 1.3;
+}
+
+.ps-sidebar-author-name a {
+	color: #0f172a;
+	text-decoration: none;
+}
+
+.ps-sidebar-author-name a:hover {
+	color: #7c3aed;
+}
+
+.ps-sidebar-author-bio {
+	font-family: 'DM Sans', sans-serif;
+	font-size: 0.86rem;
+	line-height: 1.6;
+	color: #64748b;
+	margin: 4px 0 16px 0;
+}
+
+.ps-sidebar-author-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	width: 100%;
+	padding: 10px 16px;
+	margin-top: 8px;
+	border-radius: 9999px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	color: #0f172a;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.82rem;
+	font-weight: 700;
+	text-decoration: none;
+	transition: all 0.18s ease;
+}
+
+.ps-sidebar-author-btn:hover {
+	background: #7c3aed;
+	border-color: #7c3aed;
+	color: #ffffff;
+}
+
+/* Widget 2: Trending Prompts */
+.ps-trending-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.ps-trending-item {
+	margin: 0;
+}
+
+.ps-trending-link {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	text-decoration: none;
+	group: true;
+}
+
+.ps-trending-thumb {
+	width: 58px;
+	height: 58px;
+	border-radius: 12px;
+	overflow: hidden;
+	flex-shrink: 0;
+	background: #f1f5f9;
+	border: 1px solid #e2e8f0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ps-trending-thumb img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.ps-trending-thumb-fallback {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.75rem;
+	font-weight: 800;
+	color: #7c3aed;
+	background: #f5f3ff;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ps-trending-info {
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.ps-trending-post-title {
+	margin: 0;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.88rem;
+	font-weight: 700;
+	line-height: 1.38;
+	color: #0f172a;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+	transition: color 0.16s ease;
+}
+
+.ps-trending-link:hover .ps-trending-post-title {
+	color: #7c3aed;
+}
+
+.ps-trending-date {
+	font-size: 0.75rem;
+	color: #64748b;
+}
+
+.ps-trending-empty {
+	font-size: 0.85rem;
+	color: #64748b;
+	margin: 0;
+}
+
+/* Widget 3: Categories */
+.ps-sidebar-cat-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.ps-sidebar-cat-link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 10px 14px;
+	border-radius: 12px;
+	background: #f8fafc;
+	border: 1px solid #f1f5f9;
+	color: #1e293b;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 0.88rem;
+	font-weight: 600;
+	text-decoration: none;
+	transition: all 0.18s ease;
+}
+
+.ps-sidebar-cat-link:hover {
+	background: #f5f3ff;
+	border-color: rgba(124, 58, 237, 0.28);
+	color: #6d28d9;
+}
+
+.ps-sidebar-cat-link svg {
+	color: #94a3b8;
+	transition: transform 0.18s ease, color 0.18s ease;
+}
+
+.ps-sidebar-cat-link:hover svg {
+	color: #7c3aed;
+	transform: translateX(2px);
+}
+
+/* ==========================================================================
+   WordPress Comments & Redesigned "Join the Conversation" Section
+   Strictly scoped to `.ps-single-comments-wrap` / `.ps-comments-section`
+   ========================================================================== */
+.ps-single-comments-wrap {
+	margin-top: 48px;
+	padding-top: 36px;
+	border-top: 1px solid #e2e8f0;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.ps-comments-section {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+
+/* Existing Comments List */
+.ps-existing-comments-block {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.ps-comments-count-heading {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 1.25rem;
+	font-weight: 800;
+	color: #0f172a;
+	letter-spacing: -0.015em;
+	margin: 0;
+}
+
+.ps-comment-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.ps-comment-list li.comment,
+.ps-comment-list li.pingback,
+.ps-comment-list li.trackback {
+	margin: 0;
+	padding: 0;
+}
+
+.ps-comment-list .comment-body {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 16px;
+	padding: 20px 22px;
+	box-shadow: 0 2px 10px -4px rgba(15, 23, 42, 0.04);
+}
+
+.ps-comment-list .children {
+	list-style: none;
+	margin: 14px 0 0 0;
+	padding-left: 20px;
+	border-left: 2px solid rgba(124, 58, 237, 0.18);
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+@media (max-width: 640px) {
+	.ps-comment-list .children {
+		padding-left: 12px;
+	}
+}
+
+.ps-comment-list .comment-meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 8px 14px;
+	margin-bottom: 12px;
+}
+
+.ps-comment-list .comment-author {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	font-size: 0.94rem;
+	color: #0f172a;
+}
+
+.ps-comment-list .comment-author .avatar {
+	width: 42px;
+	height: 42px;
+	border-radius: 50%;
+	object-fit: cover;
+	border: 2px solid rgba(124, 58, 237, 0.22);
+	flex-shrink: 0;
+}
+
+.ps-comment-list .comment-author .fn {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-weight: 700;
+	color: #0f172a;
+	font-style: normal;
+}
+
+.ps-comment-list .comment-author .fn a {
+	color: #0f172a;
+	text-decoration: none;
+	transition: color 0.16s ease;
+}
+
+.ps-comment-list .comment-author .fn a:hover {
+	color: #7c3aed;
+}
+
+.ps-comment-list .comment-author .says {
+	display: none;
+}
+
+.ps-comment-list .comment-metadata {
+	font-size: 0.8rem;
+	color: #64748b;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.ps-comment-list .comment-metadata a {
+	color: #64748b;
+	text-decoration: none;
+	transition: color 0.16s ease;
+}
+
+.ps-comment-list .comment-metadata a:hover {
+	color: #7c3aed;
+}
+
+.ps-comment-list .comment-awaiting-moderation {
+	display: block;
+	width: 100%;
+	margin: 8px 0 0 0;
+	padding: 8px 12px;
+	border-radius: 10px;
+	background: #f5f3ff;
+	border: 1px solid rgba(124, 58, 237, 0.2);
+	color: #5b21b6;
+	font-size: 0.82rem;
+	font-style: normal;
+	font-weight: 600;
+}
+
+.ps-comment-list .comment-content {
+	font-size: 0.96rem;
+	line-height: 1.68;
+	color: #334155;
+	overflow-wrap: break-word;
+}
+
+.ps-comment-list .comment-content p {
+	margin: 0 0 0.85em 0;
+}
+
+.ps-comment-list .comment-content p:last-child {
+	margin-bottom: 0;
+}
+
+.ps-comment-list .reply {
+	margin-top: 12px;
+}
+
+.ps-comment-list .comment-reply-link {
+	display: inline-flex;
+	align-items: center;
+	padding: 5px 13px;
+	border-radius: 9999px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	color: #475569;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 700;
+	text-decoration: none;
+	transition: all 0.18s ease;
+}
+
+.ps-comment-list .comment-reply-link:hover {
+	background: #f5f3ff;
+	border-color: rgba(124, 58, 237, 0.35);
+	color: #6d28d9;
+}
+
+.ps-comments-closed-note {
+	margin: 0;
+	padding: 14px 18px;
+	border-radius: 12px;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	color: #64748b;
+	font-size: 0.9rem;
+}
+
+/* Redesigned "Join the Conversation" Comment Form Card */
+.ps-comment-respond-card {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 20px;
+	padding: 32px;
+	box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+}
+
+@media (max-width: 640px) {
+	.ps-comment-respond-card {
+		padding: 22px 18px;
+		border-radius: 16px;
+	}
+}
+
+.ps-comment-reply-header {
+	margin-bottom: 22px;
+	padding-bottom: 18px;
+	border-bottom: 1px solid #f1f5f9;
+}
+
+.ps-comment-title-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.ps-comment-reply-title {
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: clamp(1.32rem, 2.4vw, 1.55rem);
+	font-weight: 800;
+	line-height: 1.25;
+	letter-spacing: -0.02em;
+	color: #0f172a;
+	margin: 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+}
+
+.ps-cancel-reply-wrap a {
+	display: inline-flex;
+	align-items: center;
+	padding: 4px 12px;
+	border-radius: 9999px;
+	font-family: 'DM Sans', sans-serif;
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: #6d28d9;
+	background: #f5f3ff;
+	border: 1px solid rgba(124, 58, 237, 0.25);
+	text-decoration: none;
+	transition: all 0.16s ease;
+}
+
+.ps-cancel-reply-wrap a:hover {
+	background: #7c3aed;
+	border-color: #7c3aed;
+	color: #ffffff;
+}
+
+.ps-comment-reply-subtext {
+	margin: 8px 0 0 0;
+	font-size: 0.96rem;
+	line-height: 1.6;
+	color: #475569;
+}
+
+/* Form Layout & Privacy / Logged-In Notes */
+.ps-comment-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.ps-comment-notes,
+.ps-comment-form .logged-in-as {
+	margin: 0;
+	font-size: 0.84rem;
+	line-height: 1.55;
+	color: #64748b;
+}
+
+.ps-comment-form .logged-in-as a {
+	color: #6d28d9;
+	font-weight: 600;
+	text-decoration: none;
+}
+
+.ps-comment-form .logged-in-as a:hover {
+	text-decoration: underline;
+}
+
+.ps-required {
+	color: #7c3aed;
+	font-weight: 700;
+}
+
+.ps-optional-tag {
+	font-weight: 500;
+	font-size: 0.82rem;
+	color: #64748b;
+}
+
+/* Field Groups, Labels, Inputs, and Textarea */
+.ps-comment-field-group {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin: 0;
+}
+
+.ps-comment-label {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-size: 0.88rem;
+	font-weight: 700;
+	color: #0f172a;
+	line-height: 1.35;
+}
+
+.ps-comment-input,
+.ps-comment-textarea {
+	width: 100%;
+	box-sizing: border-box;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 0.96rem;
+	line-height: 1.55;
+	color: #0f172a;
+	background-color: #ffffff;
+	border: 1.5px solid #cbd5e1;
+	border-radius: 12px;
+	padding: 13px 16px;
+	transition: border-color 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+	appearance: none;
+}
+
+.ps-comment-input::placeholder,
+.ps-comment-textarea::placeholder {
+	color: #94a3b8;
+}
+
+.ps-comment-input:hover,
+.ps-comment-textarea:hover {
+	border-color: #94a3b8;
+}
+
+.ps-comment-input:focus,
+.ps-comment-textarea:focus {
+	outline: none;
+	border-color: #7c3aed;
+	box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+	background-color: #ffffff;
+}
+
+.ps-comment-textarea {
+	min-height: 148px;
+	resize: vertical;
+}
+
+.ps-comment-input[aria-invalid="true"],
+.ps-comment-textarea[aria-invalid="true"] {
+	border-color: #dc2626;
+	box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.ps-comment-field-error {
+	margin: 2px 0 0 0;
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: #dc2626;
+}
+
+/* Cookie Consent Checkbox Row */
+.ps-comment-cookies-row {
+	display: flex;
+	align-items: flex-start;
+	gap: 11px;
+	margin: 2px 0 0 0;
+	padding: 12px 14px;
+	border-radius: 12px;
+	background: #f8fafc;
+	border: 1px solid #f1f5f9;
+}
+
+.ps-comment-checkbox {
+	width: 18px;
+	height: 18px;
+	margin: 2px 0 0 0;
+	flex-shrink: 0;
+	accent-color: #7c3aed;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.ps-comment-checkbox:focus-visible {
+	outline: 2px solid #7c3aed;
+	outline-offset: 2px;
+}
+
+.ps-comment-cookies-label {
+	font-size: 0.88rem;
+	line-height: 1.5;
+	color: #334155;
+	cursor: pointer;
+	user-select: none;
+}
+
+/* Violet "Post Comment" Submit Button */
+.ps-comment-submit-row {
+	margin: 4px 0 0 0;
+	display: flex;
+	align-items: center;
+}
+
+.ps-comment-submit-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 13px 28px;
+	border-radius: 12px;
+	border: 1px solid #6d28d9;
+	background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 100%);
+	color: #ffffff;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 0.94rem;
+	font-weight: 700;
+	letter-spacing: -0.01em;
+	line-height: 1.25;
+	cursor: pointer;
+	box-shadow: 0 4px 14px -2px rgba(109, 40, 217, 0.32);
+	transition: background 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+}
+
+.ps-comment-submit-btn:hover:not(:disabled) {
+	background: linear-gradient(135deg, #6d28d9 0%, #5b21b6 100%);
+	border-color: #5b21b6;
+	transform: translateY(-1px);
+	box-shadow: 0 8px 20px -4px rgba(109, 40, 217, 0.4);
+}
+
+.ps-comment-submit-btn:active:not(:disabled) {
+	background: #4c1d95;
+	border-color: #4c1d95;
+	transform: translateY(0);
+	box-shadow: 0 2px 8px -2px rgba(109, 40, 217, 0.3);
+}
+
+.ps-comment-submit-btn:focus-visible {
+	outline: 2px solid #7c3aed;
+	outline-offset: 3px;
+}
+
+.ps-comment-submit-btn:disabled,
+.ps-comment-submit-btn.is-submitting {
+	opacity: 0.78;
+	cursor: not-allowed;
+	transform: none;
+}
+
+.ps-comment-submit-btn.is-submitting::before {
+	content: '';
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	border: 2px solid rgba(255, 255, 255, 0.35);
+	border-top-color: #ffffff;
+	animation: psCommentSpin 0.7s linear infinite;
+}
+
+@keyframes psCommentSpin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (max-width: 640px) {
+	.ps-comment-submit-btn {
+		width: 100%;
+		padding: 14px 22px;
+	}
+}

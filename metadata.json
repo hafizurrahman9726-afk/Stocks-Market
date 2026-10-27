@@ -1,0 +1,6 @@
+{
+  "name": "PromptSyra WordPress Theme Rebrand & Staging Workbench",
+  "description": "WordPress theme inspection, non-destructive backup, PHP child/rebrand package builder, and homepage staging previewer for PromptSyra.com.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

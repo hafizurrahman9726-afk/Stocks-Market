@@ -1,0 +1,727 @@
+/**
+ * PromptSyra Essential Pages & Author Profiles Stylesheet (v2.3.0)
+ *
+ * Scoped strictly to .ps-essential-page, .ps-writers-grid, .ps-contact-form-card,
+ * and .ps-author-archive-* classes so homepage and single-post layouts remain untouched.
+ *
+ * Design principles:
+ * - Crisp #FFFFFF canvas, #0F172A deep navy headings, #334155 comfortable prose
+ * - Restrained #7C3AED violet accents on links, focus rings, and primary actions
+ * - Long legal pages (Privacy Policy, Disclaimer, Terms & Conditions) use unboxed
+ *   high-legibility editorial typography (68ch-74ch) rather than boxed paragraph cards
+ * - Responsive across 320px, 375px, 768px, 1024px, and 1440px viewports
+ */
+
+.ps-essential-hero {
+	background: #ffffff;
+	border-bottom: 1px solid #e2e8f0;
+	padding: 3.25rem 0 2.5rem;
+}
+
+.ps-essential-hero-inner {
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 0 1.25rem;
+}
+
+.ps-essential-hero--legal .ps-essential-hero-inner {
+	max-width: 760px;
+}
+
+.ps-essential-kicker {
+	margin: 0 0 0.625rem;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	color: #6d28d9;
+	letter-spacing: 0.01em;
+}
+
+.ps-essential-title {
+	margin: 0;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: clamp(2rem, 3.6vw, 2.75rem);
+	font-weight: 800;
+	line-height: 1.18;
+	letter-spacing: -0.025em;
+	color: #0f172a;
+	text-wrap: balance;
+}
+
+.ps-essential-subtitle {
+	margin: 0.875rem 0 0;
+	max-width: 66ch;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1.0625rem;
+	line-height: 1.65;
+	color: #475569;
+}
+
+.ps-essential-body-section {
+	background: #ffffff;
+	padding: 3rem 0 4.5rem;
+}
+
+.ps-essential-container {
+	max-width: 1080px;
+	margin: 0 auto;
+	padding: 0 1.25rem;
+}
+
+.ps-essential-container--legal {
+	max-width: 760px;
+}
+
+.ps-essential-container--standard {
+	max-width: 820px;
+}
+
+/* Base Prose Typography for Essential & Legal Pages (Unboxed, High Readability) */
+.ps-essential-prose {
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1.03125rem;
+	line-height: 1.78;
+	color: #334155;
+}
+
+.ps-essential-prose > *:first-child {
+	margin-top: 0;
+}
+
+.ps-essential-prose p {
+	margin: 0 0 1.25rem;
+}
+
+.ps-essential-prose .ps-page-lead {
+	font-size: 1.15rem;
+	line-height: 1.72;
+	color: #1e293b;
+	font-weight: 500;
+	margin-bottom: 1.25rem;
+}
+
+.ps-essential-prose .ps-legal-meta {
+	font-size: 0.875rem;
+	line-height: 1.6;
+	color: #64748b;
+	padding-bottom: 1.25rem;
+	margin-bottom: 1.75rem;
+	border-bottom: 1px solid #f1f5f9;
+}
+
+.ps-essential-prose h2 {
+	margin: 2.5rem 0 0.875rem;
+	padding-top: 1.75rem;
+	border-top: 1px solid #f1f5f9;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: clamp(1.25rem, 2.2vw, 1.5rem);
+	font-weight: 700;
+	line-height: 1.3;
+	letter-spacing: -0.015em;
+	color: #0f172a;
+	text-wrap: balance;
+}
+
+.ps-essential-prose h2:first-of-type {
+	margin-top: 2rem;
+}
+
+.ps-essential-prose h3 {
+	margin: 1.75rem 0 0.625rem;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1.35;
+	color: #0f172a;
+}
+
+.ps-essential-prose ul,
+.ps-essential-prose ol {
+	margin: 0 0 1.5rem;
+	padding-left: 1.375rem;
+}
+
+.ps-essential-prose li {
+	margin-bottom: 0.625rem;
+}
+
+.ps-essential-prose li strong {
+	color: #0f172a;
+	font-weight: 600;
+}
+
+.ps-essential-prose a {
+	color: #6d28d9;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+	text-decoration-color: rgba(109, 40, 217, 0.35);
+	transition: color 150ms ease, text-decoration-color 150ms ease;
+}
+
+.ps-essential-prose a:hover,
+.ps-essential-prose a:focus-visible {
+	color: #4c1d95;
+	text-decoration-color: currentColor;
+}
+
+.ps-essential-prose code {
+	font-size: 0.875em;
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 5px;
+	padding: 0.12rem 0.38rem;
+	color: #1e293b;
+}
+
+/* About Us Editorial Layout Components */
+.ps-editorial-intro-block {
+	max-width: 72ch;
+	margin-bottom: 2.25rem;
+}
+
+.ps-about-pillars {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin: 2rem 0 2.5rem;
+}
+
+.ps-about-pillar {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+	padding: 1.75rem;
+}
+
+.ps-about-pillar h2 {
+	margin: 0 0 0.75rem !important;
+	padding-top: 0 !important;
+	border-top: none !important;
+	font-size: 1.25rem;
+}
+
+.ps-about-pillar ul {
+	margin-bottom: 0;
+}
+
+.ps-editorial-callout {
+	background: #faf8ff;
+	border: 1px solid #e9d5ff;
+	border-radius: 14px;
+	padding: 1.75rem 2rem;
+	margin: 2.25rem 0;
+}
+
+.ps-editorial-callout h2 {
+	margin: 0 0 0.75rem !important;
+	padding-top: 0 !important;
+	border-top: none !important;
+	font-size: 1.25rem;
+}
+
+.ps-editorial-callout p:last-child {
+	margin-bottom: 0;
+}
+
+/* Meet Our Writers — 3 Dynamic Author Profile Cards */
+.ps-writers-section {
+	margin: 3rem 0 2.5rem;
+	padding-top: 2.5rem;
+	border-top: 1px solid #e2e8f0;
+}
+
+.ps-writers-section-head {
+	max-width: 68ch;
+	margin-bottom: 1.75rem;
+}
+
+.ps-writers-section-head h2 {
+	margin: 0.25rem 0 0.625rem !important;
+	padding-top: 0 !important;
+	border-top: none !important;
+	font-size: clamp(1.5rem, 2.6vw, 1.875rem);
+}
+
+.ps-writers-section-head p:last-child {
+	margin-bottom: 0;
+	color: #475569;
+}
+
+.ps-writers-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 1.5rem;
+	align-items: stretch;
+}
+
+.ps-writer-card {
+	display: flex;
+	flex-direction: column;
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 16px;
+	padding: 1.625rem;
+	transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.ps-writer-card:hover {
+	border-color: #cbd5e1;
+	transform: translateY(-2px);
+}
+
+.ps-writer-card-top {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+	margin-bottom: 1.125rem;
+}
+
+.ps-writer-avatar-wrap {
+	flex-shrink: 0;
+	width: 76px;
+	height: 76px;
+	border-radius: 50%;
+	overflow: hidden;
+	background: #f1f5f9;
+	border: 2px solid #ede9fe;
+}
+
+.ps-writer-avatar {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center top;
+}
+
+.ps-writer-avatar-fallback {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	font-family: 'Plus Jakarta Sans', sans-serif;
+	font-weight: 700;
+	font-size: 1.125rem;
+	color: #6d28d9;
+	background: #f5f3ff;
+}
+
+.ps-writer-identity {
+	min-width: 0;
+}
+
+.ps-writer-name {
+	margin: 0 !important;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1.125rem !important;
+	font-weight: 700;
+	line-height: 1.3;
+	color: #0f172a;
+}
+
+.ps-writer-name a {
+	color: #0f172a !important;
+	text-decoration: none !important;
+}
+
+.ps-writer-name a:hover,
+.ps-writer-name a:focus-visible {
+	color: #6d28d9 !important;
+}
+
+.ps-writer-role {
+	margin: 0.25rem 0 0 !important;
+	font-size: 0.84375rem;
+	line-height: 1.4;
+	font-weight: 500;
+	color: #64748b;
+}
+
+.ps-writer-bio {
+	margin: 0 0 1.25rem !important;
+	font-size: 0.9375rem;
+	line-height: 1.65;
+	color: #475569;
+	flex: 1 1 auto;
+}
+
+.ps-writer-footer {
+	padding-top: 1rem;
+	border-top: 1px solid #f1f5f9;
+	margin-top: auto;
+}
+
+.ps-writer-archive-link {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: #6d28d9 !important;
+	text-decoration: none !important;
+	min-height: 40px;
+}
+
+.ps-writer-archive-link:hover,
+.ps-writer-archive-link:focus-visible {
+	color: #4c1d95 !important;
+	text-decoration: underline !important;
+}
+
+/* Contact Us 2-Column Editorial + Functional Form Layout */
+.ps-contact-page-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+	gap: 2.75rem;
+	align-items: start;
+}
+
+.ps-contact-info-col h2 {
+	margin: 2rem 0 0.75rem !important;
+	padding-top: 1.5rem !important;
+	border-top: 1px solid #f1f5f9 !important;
+	font-size: 1.25rem;
+}
+
+.ps-contact-direct-box {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 14px;
+	padding: 1.5rem;
+	margin: 1.5rem 0 2rem;
+}
+
+.ps-contact-direct-box h2 {
+	margin: 0 0 0.375rem !important;
+	padding-top: 0 !important;
+	border-top: none !important;
+	font-size: 1.0625rem !important;
+}
+
+.ps-contact-direct-box p {
+	margin: 0 0 0.5rem !important;
+	font-size: 0.9375rem;
+}
+
+.ps-contact-email-line {
+	margin: 0 !important;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1.1875rem !important;
+	font-weight: 700;
+}
+
+.ps-contact-email-line a {
+	color: #6d28d9 !important;
+	text-decoration: none !important;
+	word-break: break-word;
+}
+
+.ps-contact-email-line a:hover,
+.ps-contact-email-line a:focus-visible {
+	text-decoration: underline !important;
+}
+
+.ps-contact-topics-list {
+	margin: 0 0 1.5rem;
+	padding-left: 1.25rem;
+}
+
+.ps-contact-helpful-note {
+	font-size: 0.9375rem;
+	color: #64748b;
+}
+
+/* Contact Form Card & Accessible Controls */
+.ps-contact-form-card {
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 16px;
+	padding: 2rem;
+	box-shadow: 0 10px 30px -18px rgba(15, 23, 42, 0.12);
+}
+
+.ps-contact-form-header {
+	margin-bottom: 1.5rem;
+}
+
+.ps-contact-form-title {
+	margin: 0 0 0.375rem !important;
+	padding-top: 0 !important;
+	border-top: none !important;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1.375rem !important;
+	font-weight: 700;
+	color: #0f172a;
+}
+
+.ps-contact-form-subtitle {
+	margin: 0 !important;
+	font-size: 0.9375rem;
+	line-height: 1.55;
+	color: #64748b;
+}
+
+.ps-cf-hp {
+	position: absolute !important;
+	left: -9999px !important;
+	width: 1px !important;
+	height: 1px !important;
+	overflow: hidden !important;
+}
+
+.ps-contact-row-2col {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.ps-contact-field {
+	margin-bottom: 1.125rem;
+}
+
+.ps-contact-label {
+	display: block;
+	margin-bottom: 0.4375rem;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #0f172a;
+}
+
+.ps-req-mark {
+	color: #7c3aed;
+	font-weight: 700;
+}
+
+.ps-contact-input,
+.ps-contact-textarea {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 1rem;
+	line-height: 1.5;
+	color: #0f172a;
+	background: #f8fafc;
+	border: 1px solid #cbd5e1;
+	border-radius: 10px;
+	padding: 0.75rem 0.9375rem;
+	transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.ps-contact-input {
+	min-height: 48px;
+}
+
+.ps-contact-textarea {
+	min-height: 148px;
+	resize: vertical;
+}
+
+.ps-contact-input::placeholder,
+.ps-contact-textarea::placeholder {
+	color: #94a3b8;
+}
+
+.ps-contact-input:hover,
+.ps-contact-textarea:hover {
+	border-color: #94a3b8;
+}
+
+.ps-contact-input:focus,
+.ps-contact-textarea:focus {
+	outline: none;
+	background: #ffffff;
+	border-color: #7c3aed;
+	box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.16);
+}
+
+.ps-contact-privacy-note {
+	margin: 0.25rem 0 1.25rem !important;
+	font-size: 0.84375rem !important;
+	line-height: 1.55 !important;
+	color: #64748b;
+}
+
+.ps-contact-submit-row {
+	display: flex;
+	align-items: center;
+}
+
+.ps-contact-submit-btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	min-height: 48px;
+	padding: 0.75rem 1.625rem;
+	border: none;
+	border-radius: 10px;
+	font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+	font-size: 0.96875rem;
+	font-weight: 700;
+	color: #ffffff;
+	background: #7c3aed;
+	cursor: pointer;
+	transition: background-color 150ms ease, transform 150ms ease;
+}
+
+.ps-contact-submit-btn:hover {
+	background: #6d28d9;
+}
+
+.ps-contact-submit-btn:focus-visible {
+	outline: 3px solid rgba(124, 58, 237, 0.35);
+	outline-offset: 2px;
+}
+
+.ps-contact-alert {
+	display: flex;
+	align-items: flex-start;
+	gap: 0.75rem;
+	padding: 1rem 1.125rem;
+	border-radius: 12px;
+	margin-bottom: 1.375rem;
+	font-size: 0.9375rem;
+	line-height: 1.55;
+}
+
+.ps-contact-alert svg {
+	flex-shrink: 0;
+	margin-top: 0.15rem;
+}
+
+.ps-contact-alert strong {
+	display: block;
+	margin-bottom: 0.2rem;
+	font-weight: 700;
+}
+
+.ps-contact-alert p {
+	margin: 0 !important;
+}
+
+.ps-contact-alert.is-success {
+	background: #f0fdf4;
+	border: 1px solid #bbf7d0;
+	color: #166534;
+}
+
+.ps-contact-alert.is-error {
+	background: #fef2f2;
+	border: 1px solid #fecaca;
+	color: #991b1b;
+}
+
+.ps-contact-alert.is-error a {
+	color: #991b1b !important;
+	font-weight: 700;
+}
+
+/* Admin-Only Non-Intrusive Sync Notice Inside Legacy Fallback Pages */
+.ps-page-admin-sync-bar {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	padding: 0.875rem 1.125rem;
+	margin-bottom: 1.75rem;
+	background: #f8fafc;
+	border: 1px solid #cbd5e1;
+	border-radius: 10px;
+	font-size: 0.875rem;
+	color: #334155;
+}
+
+.ps-page-admin-sync-bar a {
+	font-weight: 600;
+	color: #6d28d9;
+}
+
+/* Enhanced Author Archive Profile Header */
+.ps-author-archive-card {
+	display: flex;
+	align-items: flex-start;
+	gap: 1.5rem;
+	background: #ffffff;
+	border: 1px solid #e2e8f0;
+	border-radius: 16px;
+	padding: 1.75rem 2rem;
+	margin-top: 1rem;
+}
+
+.ps-author-archive-portrait {
+	flex-shrink: 0;
+	width: 96px;
+	height: 96px;
+	border-radius: 50%;
+	object-fit: cover;
+	object-position: center top;
+	border: 2px solid #ede9fe;
+	background: #f8fafc;
+}
+
+.ps-author-archive-role {
+	margin: 0.25rem 0 0.625rem;
+	font-size: 0.9rem;
+	font-weight: 600;
+	color: #6d28d9;
+}
+
+.ps-author-archive-meta {
+	margin-top: 0.875rem;
+	font-size: 0.84375rem;
+	color: #64748b;
+}
+
+/* Responsive Breakpoints (1024px, 768px, 375px, 320px) */
+@media (max-width: 1024px) {
+	.ps-writers-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.ps-contact-page-grid {
+		grid-template-columns: 1fr;
+		gap: 2.25rem;
+	}
+}
+
+@media (max-width: 767px) {
+	.ps-essential-hero {
+		padding: 2.25rem 0 1.75rem;
+	}
+
+	.ps-essential-body-section {
+		padding: 2rem 0 3.25rem;
+	}
+
+	.ps-about-pillars {
+		grid-template-columns: 1fr;
+		gap: 1.125rem;
+	}
+
+	.ps-writers-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.ps-contact-row-2col {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.ps-contact-form-card {
+		padding: 1.375rem;
+	}
+
+	.ps-contact-submit-btn {
+		width: 100%;
+	}
+
+	.ps-author-archive-card {
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 1.375rem;
+	}
+}
